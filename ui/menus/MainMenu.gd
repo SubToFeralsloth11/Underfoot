@@ -11,6 +11,17 @@ func _ready() -> void:
 	Settings.apply_video()
 	Audio.start_menu_audio()
 	_atlas = ArtGen.ant_atlas()
+	# Release QA: `-- --autostart=sandbox --speed=4 --soak-seconds=600` starts a game directly.
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--autostart="):
+			var opts := {"seed": 1234, "workers": 200, "soldiers": 30, "scouts": 15, "nurses": 20}
+			for b in OS.get_cmdline_user_args():
+				if b.begins_with("--speed="):
+					Settings.default_speed = float(b.get_slice("=", 1))
+				if b.begins_with("--soak-seconds="):
+					Game.soak_seconds = float(b.get_slice("=", 1))
+			Game.new_game.call_deferred(a.get_slice("=", 1), opts)
+			return
 	for i in 60:
 		_ants.append([Vector2(randf() * 1280, randf() * 720), randf() * TAU, randf_range(30, 70)])
 	var v := UITheme.vbox(10)

@@ -12,11 +12,14 @@ var world: World = null
 var last_options: Dictionary = {}
 var result_won := false
 var result_reason := ""
+## Release soak test: quit after this many real seconds of play (0 = off).
+var soak_seconds := 0.0
+var _soak_time := 0.0
+var _soak_worst_ms := 0.0
 
 
 func _ready() -> void:
 	Events.game_over.connect(_on_game_over)
-	Events.day_passed.connect(_on_day)
 
 
 ## mode: campaign | sandbox | endless. opts: chapter, seed, difficulty, sandbox sliders.
@@ -83,9 +86,14 @@ func _on_game_over(won: bool, reason: String) -> void:
 	Audio.play("victory" if won else "defeat")
 
 
-func _on_day(_d: int) -> void:
-	# Autosave every in-game dawn is handled at hour 6 by Save; day hook kept for stats.
-	pass
+func _process(delta: float) -> void:
+	if soak_seconds <= 0.0 or world == null:
+		return
+	_soak_time += delta
+	_soak_worst_ms = maxf(_soak_worst_ms, Clock.last_step_ms)
+	if _soak_time >= soak_seconds or state == State.OVER:
+		print("SOAK done: %.0f s real, %d ticks (%s), ants %d, worst tick %.1f ms, state %s" % [_soak_time, Clock.tick, Clock.label(), world.ants.alive, _soak_worst_ms, State.keys()[state]])
+		get_tree().quit(0)
 
 
 func leaderboard() -> Array:

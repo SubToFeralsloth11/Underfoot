@@ -343,6 +343,7 @@ func refresh() -> void:
 		points_label.text += "  Charters %d" % col.charters
 	esc_label.text = ("House alert %d/5" % w.house_ai.level) if w.house_ai and w.house_ai.level > 0 else ""
 	view_buttons["house"].visible = w.house != null
+	view_buttons["surface"].visible = w.flags.get("surface", false)
 	var nnb := find_child("NextNest", true, false)
 	if nnb:
 		nnb.visible = w.player_colonies().size() > 1

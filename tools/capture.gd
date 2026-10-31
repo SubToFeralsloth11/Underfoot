@@ -28,7 +28,8 @@ func _run(mode: String, ticks: int, chapter: String) -> void:
 	var game = root.get_node("Game")
 	var clock = root.get_node("Clock")
 	if mode == "menu":
-		await create_timer(1.0).timeout
+		change_scene_to_file("res://ui/menus/MainMenu.tscn")
+		await create_timer(1.5).timeout
 		await _shot("menu")
 		quit()
 		return

@@ -8,10 +8,10 @@ extends RefCounted
 ##  - nests: flow fields over open cells (no per-ant pathfinding).
 
 enum { IDLE, WANDER, FOLLOW, CARRY, DIG, NURSE, FIGHT, FLEE, DEAD, HAUL, TASK }
-enum { J_NONE, J_DIG, J_NURSE, J_STORE, J_FORAGE, J_SPOIL, J_PATROL, J_REST, J_TRADE, J_RALLY, J_RAID, J_QUEEN, J_BROOD }
-const NJOBS := 13
+enum { J_NONE, J_DIG, J_NURSE, J_STORE, J_FORAGE, J_SPOIL, J_PATROL, J_REST, J_TRADE, J_RALLY, J_RAID, J_QUEEN, J_BROOD, J_DEFEND }
+const NJOBS := 14
 const STATE_NAMES := ["Idle", "Wander", "Follow trail", "Carry", "Dig", "Nurse", "Fight", "Flee", "Dead", "Haul", "Task"]
-const JOB_NAMES := ["-", "Digging", "Nursing", "Storing food", "Foraging", "Removing spoil", "Patrolling", "Resting", "Trading", "Rallying", "Raiding", "Queen", "Moving brood"]
+const JOB_NAMES := ["-", "Digging", "Nursing", "Storing food", "Foraging", "Removing spoil", "Patrolling", "Resting", "Trading", "Rallying", "Raiding", "Queen", "Moving brood", "Defending the queen"]
 
 const ITEM_NONE := 0
 const ITEM_SPOIL := 1
@@ -298,6 +298,10 @@ var _sense := PackedFloat32Array()
 var _wander := PackedFloat32Array()
 var _life := PackedFloat32Array()
 var _player_w := PackedFloat32Array()
+## Faction owning each nest, and enemy ants counted inside each nest (last tick / this tick).
+var _nest_faction := PackedByteArray()
+var intruders := PackedInt32Array()
+var _intr_next := PackedInt32Array()
 var _surface_open := true
 var _house_flag := false
 var _weather_speed := 1.0
@@ -328,6 +332,15 @@ func _cache() -> void:
 	_wander.resize(ncol * ncastes)
 	_life.resize(ncol * ncastes)
 	_player_w.resize(ncol)
+	var nn: int = world.nests.size()
+	_nest_faction.resize(nn)
+	for k in nn:
+		var ow: int = world.nests[k].owner
+		_nest_faction[k] = _cols[ow].faction if ow >= 0 and ow < ncol else 255
+	_intr_next.resize(nn)
+	_intr_next.fill(0)
+	if intruders.size() != nn:
+		intruders.resize(nn)
 	for c in ncol:
 		var col = _cols[c]
 		_home_pos[c] = world.nests[col.nest].surface_pos
@@ -451,6 +464,8 @@ func step(dt: float) -> void:
 			else:
 				_step_free(i, dt, col, SPACE_SURFACE, hc)
 		elif l == LAYER_NEST:
+			if faction[i] != _nest_faction[inside[i]]:
+				_intr_next[inside[i]] += 1
 			_step_nest(i, dt, col)
 		else:
 			_step_free(i, dt, col, SPACE_HOUSE, hc)
@@ -460,6 +475,7 @@ func step(dt: float) -> void:
 			_hazards(i, dt * 10.0, col)
 		if phase % 4 == 0 and (ci == 1 or ci == 4 or state[i] == FIGHT or job[i] == J_RAID or job[i] == J_RALLY or faction[i] != 0):
 			_ant_combat(i, dt * 4.0, col)
+	intruders = _intr_next.duplicate()
 	for c in ncol:
 		var col = _cols[c]
 		col.nursing_power += nurse_power[c]
@@ -529,6 +545,32 @@ func _step_nest(i: int, dt: float, col) -> void:
 	var h := home[i]
 	var jb := job[i]
 	var st := state[i]
+	# Raiders inside: soldiers and majors drop everything and guard the queen.
+	if (ci == 1 or ci == 4) and inside[i] < intruders.size() and intruders[inside[i]] > 0 and faction[i] == _nest_faction[inside[i]] and jb != J_DEFEND and jb != J_QUEEN:
+		job[i] = J_DEFEND
+		state[i] = TASK
+		jb = J_DEFEND
+	if jb == J_DEFEND:
+		if inside[i] >= intruders.size() or intruders[inside[i]] == 0:
+			job[i] = J_NONE
+			return
+		var q: int = _cols[g.owner].queen_ant
+		var dspd: float = col.c_speed[ci] * nest_speed_mult * dt
+		var qc := g.chamber_of_type("queen")
+		if qc >= 0:
+			var f := g.field("ch:%d" % qc)
+			if f[c] > 0 and f[c] < NestGrid.INF:
+				_nest_move(i, g, c, f, dspd)
+				return
+		if q >= 0 and is_alive(q) and layer[q] == LAYER_NEST and inside[q] == inside[i]:
+			var d := pos[q] - pos[i]
+			if d.length() > 6.0:
+				var np := pos[i] + d.normalized() * minf(dspd, d.length() - 5.0)
+				if g.passable(np):
+					pos[i] = np
+			else:
+				_jitter(i, g, c, dspd * 0.5)
+		return
 	# Cheap paths for settled ants (most of a big nest at any moment).
 	if jb == J_REST and st == IDLE:
 		timer[i] -= dt
@@ -1334,7 +1376,7 @@ func serialize() -> Dictionary:
 		"n": n, "alive": alive, "pos": pos, "prev": prev, "vel": vel, "heading": heading, "layer": layer,
 		"caste": caste, "state": state, "job": job, "carry": carry, "carry_amt": carry_amt, "hp": hp,
 		"age": age, "timer": timer, "target": target, "faction": faction, "home": home, "inside": inside,
-		"scent": scent, "free": free, "tick": tick, "want": want,
+		"scent": scent, "free": free, "tick": tick, "want": want, "intruders": intruders,
 	}
 
 
