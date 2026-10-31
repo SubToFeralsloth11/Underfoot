@@ -681,11 +681,13 @@ func collapse_check(rng: RandomNumberGenerator, chance_mult: float, span_mult: f
 	if kind != "nest":
 		return filled
 	var rubble := soil_id_index("rubble")
+	# Rubble that fell during this check settles before it can cave in again.
+	var fresh := {}
 	for y in range(maxi(_min_open_row, 1), mini(_max_open_row + 1, h)):
 		var x := 0
 		while x < w:
 			var c := y * w + x
-			if solidity[c] != 0 or not _weak_ceiling(c - w):
+			if solidity[c] != 0 or not _weak_ceiling(c - w) or fresh.has(c - w):
 				x += 1
 				continue
 			var x0 := x
@@ -693,7 +695,7 @@ func collapse_check(rng: RandomNumberGenerator, chance_mult: float, span_mult: f
 			var chance := 0.0
 			while x < w:
 				var cc := y * w + x
-				if solidity[cc] != 0 or not _weak_ceiling(cc - w):
+				if solidity[cc] != 0 or not _weak_ceiling(cc - w) or fresh.has(cc - w):
 					break
 				var s: Dictionary = _soils[soil_type[cc - w]]
 				var ms := float(s.get("max_span", 999))
@@ -715,6 +717,7 @@ func collapse_check(rng: RandomNumberGenerator, chance_mult: float, span_mult: f
 							moisture[fc] = 0.0
 							mark_dirty(fc)
 							filled.append(fc)
+							fresh[fc] = true
 	if filled.size() > 0:
 		rebuild_open_list()
 		_invalidate_fields()

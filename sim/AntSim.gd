@@ -331,7 +331,7 @@ func _cache() -> void:
 	for c in ncol:
 		var col = _cols[c]
 		_home_pos[c] = world.nests[col.nest].surface_pos
-		_player_w[c] = player_weight * col.mult("pheromone.player_strength")
+		_player_w[c] = player_weight * col.mult("pheromone.player_strength") * (1.5 if col.has_unlock("behaviour:hive_mind") else 1.0)
 		for k in ncastes:
 			_speed[c * ncastes + k] = col.c_speed[k]
 			_sense[c * ncastes + k] = sense_dist * col.c_sense[k]
@@ -570,7 +570,10 @@ func _step_nest(i: int, dt: float, col) -> void:
 					job[i] = J_NONE
 					return
 				state[i] = DIG
-				if g.dig(mc, col.c_dig[ci] * dt):
+				var work: float = col.c_dig[ci] * dt
+				if col.has_unlock("behaviour:deep_shafts") and g.soil(mc).get("id", "") in ["clay", "gravel", "root"]:
+					work *= 2.0
+				if g.dig(mc, work):
 					world.on_cell_dug(inside[i], mc)
 					carry[i] = ITEM_SPOIL
 					carry_amt[i] = 1.0
@@ -655,12 +658,25 @@ func _step_nest(i: int, dt: float, col) -> void:
 				if f[c] > 0 and f[c] < NestGrid.INF:
 					_nest_move(i, g, c, f, spd)
 				else:
+					# In the queen chamber: go for the queen herself; grab brood on the way out.
 					var victim = world.colonies[g.owner]
-					if victim.brood.size() > 0 and world.rng_ants.randf() < 0.02:
+					var q: int = victim.queen_ant
+					if q >= 0 and is_alive(q) and layer[q] == LAYER_NEST and inside[q] == inside[i]:
+						var d := pos[q] - pos[i]
+						if d.length() > 3.0:
+							var np := pos[i] + d.normalized() * minf(spd, d.length() - 2.0)
+							if g.passable(np):
+								pos[i] = np
+						heading[i] = d.angle()
+						if state[i] != FIGHT:
+							state[i] = FIGHT
+							target[i] = -q - 2
+					elif victim.brood.size() > 0 and world.rng_ants.randf() < 0.02:
 						victim.brood.pop_back()
 						carry[i] = 6
 						carry_amt[i] = 1.0
-					_jitter(i, g, c, spd * 0.5)
+					else:
+						_jitter(i, g, c, spd * 0.5)
 			else:
 				if _nest_go_exit(i, g, c, spd):
 					_exit_to_surface(i, g, c)
@@ -1087,35 +1103,61 @@ func _ant_combat(i: int, dt: float, col) -> void:
 	var hc := hcell[i]
 	if hc < 0:
 		return
-	var j := hash_head[hc]
 	var me := faction[i]
 	var p := pos[i]
 	var sp := space_of(i)
-	while j >= 0:
-		if j != i and faction[j] != me and state[j] != DEAD and space_of(j) == sp and pos[j].distance_squared_to(p) < 64.0:
-			var dmg: float = col.c_attack[caste[i]] * dt
-			var other = world.colonies[home[j]]
-			if col.has_unlock("behaviour:decapitate") and world.rng_ants.randf() < 0.05 * dt:
-				dmg = 999.0
-			if col.has_unlock("behaviour:formic_spray"):
-				dmg *= 1.3
-			dmg *= other.mult("combat.damage_taken")
-			hp[j] -= dmg
-			if state[i] != FIGHT:
-				state[i] = FIGHT
-				target[i] = -j - 2
-			if state[j] != FIGHT and state[j] != HAUL:
-				state[j] = FIGHT
-				target[j] = -i - 2
-			var ph: PheromoneField = world.pher[sp]
-			ph.deposit(p.x, p.y, me * PheromoneField.PER_FACTION + PheromoneField.ALARM, alarm_deposit * 0.5)
-			if hp[j] <= 0.0:
-				col.kills["ant"] = col.kills.get("ant", 0) + 1
-				kill(j, "combat")
-				if state[i] == FIGHT:
-					state[i] = WANDER if layer[i] != LAYER_NEST else TASK
-			return
-		j = hash_next[j]
+	# Keep hitting the current foe if still in reach.
+	var foe := -1
+	var t := target[i]
+	if t <= -2:
+		var e := -t - 2
+		if e < n and state[e] != DEAD and faction[e] != me and space_of(e) == sp and pos[e].distance_squared_to(p) < 64.0:
+			foe = e
+	if foe < 0:
+		# Search this hash cell and its 8 neighbours (foes straddle cell borders).
+		var hx := hc % HASH_W
+		var hy := hc / HASH_W
+		for dy in range(-1, 2):
+			var yy := hy + dy
+			if yy < 0 or yy >= HASH_H:
+				continue
+			for dx in range(-1, 2):
+				var xx := hx + dx
+				if xx < 0 or xx >= HASH_W:
+					continue
+				var j := hash_head[yy * HASH_W + xx]
+				while j >= 0:
+					if j != i and faction[j] != me and state[j] != DEAD and space_of(j) == sp and pos[j].distance_squared_to(p) < 64.0:
+						foe = j
+						break
+					j = hash_next[j]
+				if foe >= 0:
+					break
+			if foe >= 0:
+				break
+	if foe < 0:
+		return
+	var dmg: float = col.c_attack[caste[i]] * dt
+	var other = world.colonies[home[foe]]
+	if col.has_unlock("behaviour:decapitate") and world.rng_ants.randf() < 0.05 * dt:
+		dmg = 999.0
+	if col.has_unlock("behaviour:formic_spray"):
+		dmg *= 1.3
+	dmg *= other.mult("combat.damage_taken")
+	hp[foe] -= dmg
+	if state[i] != FIGHT:
+		state[i] = FIGHT
+	target[i] = -foe - 2
+	if state[foe] != FIGHT and state[foe] != HAUL:
+		state[foe] = FIGHT
+		target[foe] = -i - 2
+	var ph: PheromoneField = world.pher[sp]
+	ph.deposit(p.x, p.y, me * PheromoneField.PER_FACTION + PheromoneField.ALARM, alarm_deposit * 0.5)
+	if hp[foe] <= 0.0:
+		col.kills["ant"] = col.kills.get("ant", 0) + 1
+		kill(foe, "combat")
+		if state[i] == FIGHT:
+			state[i] = WANDER if layer[i] != LAYER_NEST else TASK
 
 
 # ---------------------------------------------------------------- hazards

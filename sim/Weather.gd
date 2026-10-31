@@ -189,7 +189,7 @@ func hazard_damage(p: Vector2, lyr: int, col) -> float:
 	var t := surface_temp()
 	if t < 3.0:
 		d += (3.0 - t) * 0.08 / col.mult("env.cold_resist")
-	if in_sprinkler(p) and not col.has_unlock("behaviour:raft"):
+	if in_sprinkler(p) and not col.has_unlock("behaviour:raft") and not col.has_unlock("behaviour:living_bridges"):
 		d += 0.35 / col.mult("env.flood_resist")
 	return d
 

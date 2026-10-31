@@ -67,6 +67,8 @@ func on_hour(season_name: String, season: Dictionary, diff: Dictionary, flags: D
 	if not flags.get("creatures", false):
 		return
 	var rate: float = float(season.get("creature_rate", 0.5)) * float(diff.get("creature_rate", 1.0)) * world.year_ramp()
+	# Small colonies get fewer visitors: threats scale in with the population.
+	rate *= clampf(world.colony_population() / 80.0, 0.2, 1.0)
 	var rng: RandomNumberGenerator = world.rng_creatures
 	var attempts := int(rate) + (1 if rng.randf() < fmod(rate, 1.0) else 0)
 	for a in attempts:

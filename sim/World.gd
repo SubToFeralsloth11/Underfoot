@@ -39,7 +39,8 @@ var env: NestEnvironment
 var campaign: Campaign
 var env_cfg: Dictionary = {}
 
-var rally: Array = [{"pos": Vector2.INF, "active": false, "until": 0, "last": -999999}, {"pos": Vector2.INF, "active": false, "until": 0, "last": -999999}]
+## "last" = tick of the faction's previous raid; 0 so the first raid waits a full interval.
+var rally: Array = [{"pos": Vector2.INF, "active": false, "until": 0, "last": 0}, {"pos": Vector2.INF, "active": false, "until": 0, "last": 0}]
 var stats: Dictionary = {"satellites": 0, "flights": 0}
 var field_guide: Dictionary = {}
 var haul_power: Dictionary = {}

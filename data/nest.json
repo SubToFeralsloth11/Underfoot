@@ -28,7 +28,7 @@
     "air_lethal": 22,
     "air_damage": 0.6,
     "rain_entrance_inflow": 40.0,
-    "rain_seep": 2.2,
+    "rain_seep": 0.6,
     "seep_depth_mm": 140.0,
     "water_flow": 0.5,
     "drain_rate": 4.0,
