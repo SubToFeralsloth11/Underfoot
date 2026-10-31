@@ -19,6 +19,7 @@ Clock="*res://autoload/Clock.gd"
 Game="*res://autoload/Game.gd"
 Save="*res://autoload/Save.gd"
 Audio="*res://autoload/Audio.gd"
+Profile="*res://autoload/Profile.gd"
 
 [display]
 

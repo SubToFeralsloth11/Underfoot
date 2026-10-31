@@ -28,6 +28,10 @@ func _ready() -> void:
 			var i := AudioServer.bus_count - 1
 			AudioServer.set_bus_name(i, b)
 			AudioServer.set_bus_send(i, "Master")
+			if b == "Music":
+				var lim := AudioEffectHardLimiter.new()
+				lim.ceiling_db = -1.0
+				AudioServer.add_bus_effect(i, lim)
 	Settings.apply_audio()
 	for i in POOL:
 		var p := AudioStreamPlayer.new()
@@ -143,7 +147,7 @@ func _process(delta: float) -> void:
 		var vol := -80.0
 		if l == layer:
 			match stem:
-				"bed": vol = -4.0
+				"bed": vol = -9.0
 				"intense1": vol = _stem_db(intensity, 0.0)
 				"intense2": vol = _stem_db(intensity, 1.0)
 				"intense3": vol = _stem_db(intensity, 2.0)
@@ -161,7 +165,7 @@ func _process(delta: float) -> void:
 
 func _stem_db(level: float, threshold: float) -> float:
 	var x := clampf(level - threshold, 0.0, 1.0)
-	return -80.0 if x <= 0.01 else linear_to_db(x) - 4.0
+	return -80.0 if x <= 0.01 else linear_to_db(x) - 10.0
 
 
 func _amb_to(name: String, db: float, delta: float) -> void:

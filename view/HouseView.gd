@@ -27,8 +27,8 @@ func _chamber_palette() -> Array:
 
 
 func focus_default() -> void:
-	camera.position = Vector2(grid.w * grid.cell * 0.3, grid.h * grid.cell * 0.65)
-	camera.zoom = Vector2.ONE * 0.5
+	camera.position = Vector2(grid.w * grid.cell * 0.5, grid.h * grid.cell * 0.6)
+	camera.zoom = Vector2.ONE * 0.2
 
 
 func _draw_extra(t: float) -> void:

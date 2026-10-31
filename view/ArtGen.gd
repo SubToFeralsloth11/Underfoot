@@ -220,7 +220,7 @@ static func draw_bug(ci: CanvasItem, def: Dictionary, pos: Vector2, heading: flo
 		var a := float(k) * 2.4
 		ci.draw_circle(Vector2(-L * 0.25 + cos(a) * L * 0.15, sin(a) * W * 0.35), W * 0.09, acc)
 	if body.get("antennae", false):
-		var hx := parts[parts.size() - 1][0] * L + L * 0.06
+		var hx: float = parts[parts.size() - 1][0] * L + L * 0.06
 		ci.draw_line(Vector2(hx, -W * 0.1), Vector2(hx + L * 0.25, -W * 0.5), acc, lw)
 		ci.draw_line(Vector2(hx, W * 0.1), Vector2(hx + L * 0.25, W * 0.5), acc, lw)
 	if tame:
@@ -265,7 +265,7 @@ static func draw_food(ci: CanvasItem, f: Dictionary, size_mult: float = 1.0) -> 
 			var n := 7
 			var pts := PackedVector2Array()
 			for k in n:
-				var a := k * TAU / n + f["id"]
+				var a: float = k * TAU / n + f["id"]
 				pts.append(p + Vector2(cos(a), sin(a)) * r * (0.75 + 0.25 * sin(k * 3.7 + f["id"])))
 			ci.draw_colored_polygon(pts, col)
 			ci.draw_circle(p - Vector2(r, r) * 0.25, r * 0.25, col.lightened(0.35))
