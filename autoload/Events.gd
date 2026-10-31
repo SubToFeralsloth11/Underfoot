@@ -1,0 +1,30 @@
+extends Node
+## Global signal bus. Systems emit here; UI, audio and FX listen.
+
+signal tick(dt: float)
+signal hour_passed(hour: int)
+signal day_passed(day: int)
+signal season_changed(season: String)
+signal year_passed(year: int)
+
+signal view_changed(view: String)
+signal alert(kind: String, text: String, pos: Vector2, space: int)
+signal toast(text: String)
+signal hint(id: String)
+signal dialog(speaker: String, text: String)
+signal telegraph(kind: String, pos: Vector2, space: int, seconds: float)
+
+signal ant_died(cause: String, pos: Vector2, space: int)
+signal ant_hatched(caste: String)
+signal cell_dug(space: int, pos: Vector2)
+signal collapse(space: int, pos: Vector2, cells: int)
+signal trail_busy(pos: Vector2)
+signal discovered(species_id: String)
+signal creature_killed(kind: String, pos: Vector2)
+signal trait_unlocked(trait_id: String)
+signal objective_completed(objective_id: String)
+signal chapter_completed(chapter_id: String)
+signal game_over(won: bool, reason: String)
+signal escalation_changed(level: int)
+signal selection_changed(kind: String, id: int)
+signal sfx(name: String, pos: Vector2, space: int)

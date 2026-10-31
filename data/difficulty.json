@@ -1,0 +1,5 @@
+{
+  "easy":   {"creature_rate": 0.5, "rival_growth": 0.5, "rival_raid": 0.5, "upkeep": 0.75, "event_chance": 0.6, "escalation": 0.6, "endless_year_ramp": 0.15},
+  "normal": {"creature_rate": 1.0, "rival_growth": 1.0, "rival_raid": 1.0, "upkeep": 1.0,  "event_chance": 1.0, "escalation": 1.0, "endless_year_ramp": 0.25},
+  "hard":   {"creature_rate": 1.6, "rival_growth": 1.5, "rival_raid": 1.5, "upkeep": 1.25, "event_chance": 1.4, "escalation": 1.5, "endless_year_ramp": 0.4}
+}

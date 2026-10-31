@@ -1,0 +1,2738 @@
+{
+ "wolf_spider": {
+  "name": "Wolf Spider",
+  "latin": "Lycosidae",
+  "category": "arachnid",
+  "behaviour": "hunter",
+  "layer": "surface",
+  "hp": 120,
+  "speed": 55,
+  "damage": 15,
+  "attack_interval": 0.45,
+  "loot": 40,
+  "size": 14,
+  "weight": 20,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 2,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#5a4632",
+   "accent": "#2b2118",
+   "length": 1.0,
+   "width": 0.8
+  },
+  "sprite_size": 64,
+  "guide": "Eight eyes, eight legs, zero manners. She doesn't build webs because she'd rather chase you personally."
+ },
+ "ground_beetle": {
+  "name": "Ground Beetle",
+  "latin": "Carabidae",
+  "category": "insect",
+  "behaviour": "raider",
+  "layer": "surface",
+  "hp": 80,
+  "speed": 35,
+  "damage": 6,
+  "attack_interval": 0.8,
+  "loot": 30,
+  "size": 12,
+  "weight": 10,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#1e2430",
+   "accent": "#4a5a7a",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "A shiny black tank that patrols the lawn at night. Will steal your crumbs and your dignity."
+ },
+ "dead_beetle": {
+  "name": "Dead Beetle",
+  "latin": "Coleoptera (deceased)",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 1,
+  "speed": 0,
+  "damage": 0,
+  "attack_interval": 1,
+  "loot": 60,
+  "size": 12,
+  "weight": 8,
+  "spawn": {
+   "seasons": [],
+   "weight": 0,
+   "max": 0
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#3a3328",
+   "accent": "#1a1610",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "The finest beetle in the yard: motionless, delicious and only slightly smelly. Bring friends to carry it."
+ },
+ "robin": {
+  "name": "Robin",
+  "latin": "Erithacus rubecula",
+  "category": "bird",
+  "behaviour": "swooper",
+  "layer": "surface",
+  "hp": 9999,
+  "speed": 400,
+  "damage": 999,
+  "attack_interval": 2,
+  "loot": 0,
+  "size": 140,
+  "weight": 999,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 2,
+   "max": 1
+  },
+  "body": {
+   "plan": "bird",
+   "segments": 3,
+   "legs": 0,
+   "wings": 2,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#7a5a3c",
+   "accent": "#e2662a",
+   "length": 1.0,
+   "width": 0.8
+  },
+  "sprite_size": 128,
+  "guide": "Humans put it on greeting cards. We put it on our list of reasons to stay underground."
+ },
+ "earthworm": {
+  "name": "Earthworm",
+  "latin": "Lumbricus terrestris",
+  "category": "worm",
+  "behaviour": "burrower",
+  "layer": "nest",
+  "hp": 200,
+  "speed": 6,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 80,
+  "size": 90,
+  "weight": 30,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "autumn",
+    "summer"
+   ],
+   "weight": 2,
+   "max": 1
+  },
+  "body": {
+   "plan": "worm",
+   "segments": 14,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#b8746a",
+   "accent": "#8a4a44",
+   "length": 2.0,
+   "width": 0.3
+  },
+  "sprite_size": 96,
+  "guide": "A pink tunnel-boring machine that eats dirt and ruins architecture. Harmless, enormous, and full of protein."
+ },
+ "aphid": {
+  "name": "Aphid",
+  "latin": "Aphidoidea",
+  "category": "insect",
+  "behaviour": "farmable",
+  "layer": "surface",
+  "hp": 3,
+  "speed": 2,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 2,
+  "size": 2,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 6,
+   "max": 30
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 2,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8fc24a",
+   "accent": "#5e8a2a",
+   "length": 0.8,
+   "width": 0.7
+  },
+  "sprite_size": 32,
+  "guide": "A tiny green sugar fountain on legs. Tickle it with an antenna and it pays you in honeydew."
+ },
+ "rhino_beetle": {
+  "name": "Rhinoceros Beetle",
+  "latin": "Dynastinae",
+  "category": "insect",
+  "behaviour": "mount",
+  "layer": "surface",
+  "hp": 400,
+  "speed": 30,
+  "damage": 20,
+  "attack_interval": 1,
+  "loot": 0,
+  "size": 40,
+  "weight": 99,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#4a2e1a",
+   "accent": "#2a1a0e",
+   "length": 1.3,
+   "width": 0.8
+  },
+  "sprite_size": 96,
+  "guide": "Can lift 850 times its own weight, and is surprisingly happy to let a dozen ants ride on its horn."
+ },
+ "house_cat": {
+  "name": "House Cat",
+  "latin": "Felis catus",
+  "category": "mammal",
+  "behaviour": "cat",
+  "layer": "house",
+  "hp": 99999,
+  "speed": 300,
+  "damage": 999,
+  "attack_interval": 1.2,
+  "loot": 0,
+  "size": 450,
+  "weight": 9999,
+  "spawn": {
+   "seasons": [],
+   "weight": 0,
+   "max": 1
+  },
+  "body": {
+   "plan": "mammal",
+   "segments": 3,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#d8893a",
+   "accent": "#f3e2c4",
+   "length": 2.0,
+   "width": 1.0
+  },
+  "sprite_size": 128,
+  "guide": "A furry god of boredom. It is not hungry; it simply wants to see what happens when it pats you."
+ },
+ "homeowner": {
+  "name": "Homeowner",
+  "latin": "Homo sapiens domesticus",
+  "category": "human",
+  "behaviour": "human",
+  "layer": "house",
+  "hp": 99999,
+  "speed": 900,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 0,
+  "size": 1700,
+  "weight": 99999,
+  "spawn": {
+   "seasons": [],
+   "weight": 0,
+   "max": 1
+  },
+  "body": {
+   "plan": "human",
+   "segments": 3,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#e0b48a",
+   "accent": "#3a5a8a",
+   "length": 2.0,
+   "width": 0.6
+  },
+  "sprite_size": 128,
+  "guide": "A mountain that wears slippers. Mostly harmless until it notices the trail to the sugar bowl."
+ },
+ "exterminator": {
+  "name": "Exterminator",
+  "latin": "Homo sapiens pestis",
+  "category": "human",
+  "behaviour": "human",
+  "layer": "surface",
+  "hp": 99999,
+  "speed": 120,
+  "damage": 50,
+  "attack_interval": 0.5,
+  "loot": 0,
+  "size": 1800,
+  "weight": 99999,
+  "spawn": {
+   "seasons": [],
+   "weight": 0,
+   "max": 0
+  },
+  "body": {
+   "plan": "human",
+   "segments": 3,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#d0b080",
+   "accent": "#c8c040",
+   "length": 2.0,
+   "width": 0.7
+  },
+  "sprite_size": 128,
+  "guide": "Arrives in a van with a picture of a sad ant on it. We do not find this funny."
+ },
+ "rival_worker": {
+  "name": "Red Ant Worker",
+  "latin": "Myrmica rubra",
+  "category": "ant",
+  "behaviour": "rival_ant",
+  "layer": "surface",
+  "hp": 10,
+  "speed": 40,
+  "damage": 1,
+  "attack_interval": 0.5,
+  "loot": 1,
+  "size": 5,
+  "weight": 1,
+  "spawn": {
+   "seasons": [],
+   "weight": 0,
+   "max": 0
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#a8321e",
+   "accent": "#5a1408",
+   "length": 1.0,
+   "width": 0.5
+  },
+  "sprite_size": 32,
+  "guide": "Lives under the garden gnome, smells of vinegar and arrogance. Bites first, asks questions never."
+ },
+ "queen_ant": {
+  "name": "Our Queen",
+  "latin": "Lasius niger (regina)",
+  "category": "ant",
+  "behaviour": "ambient",
+  "layer": "nest",
+  "hp": 50,
+  "speed": 0,
+  "damage": 0,
+  "attack_interval": 1,
+  "loot": 0,
+  "size": 12,
+  "weight": 10,
+  "spawn": {
+   "seasons": [],
+   "weight": 0,
+   "max": 0
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#2a2018",
+   "accent": "#5a4a3a",
+   "length": 1.4,
+   "width": 0.7
+  },
+  "sprite_size": 64,
+  "guide": "Mother of all of us, quite literally. She lays eggs, gives orders, and has not seen daylight since her wedding."
+ },
+ "woodlouse": {
+  "name": "Woodlouse",
+  "latin": "Oniscus asellus",
+  "category": "crustacean",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 14,
+  "speed": 10,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 8,
+  "size": 12,
+  "weight": 4,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 4,
+   "max": 4
+  },
+  "body": {
+   "plan": "myriapod",
+   "segments": 7,
+   "legs": 14,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#7a7a80",
+   "accent": "#4a4a52",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "A tiny armoured armadillo that breathes through its legs. Technically a lobster that got lost."
+ },
+ "pill_bug": {
+  "name": "Pill Woodlouse",
+  "latin": "Armadillidium vulgare",
+  "category": "crustacean",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 16,
+  "speed": 8,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 8,
+  "size": 10,
+  "weight": 4,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "myriapod",
+   "segments": 7,
+   "legs": 14,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#4a4a50",
+   "accent": "#2a2a30",
+   "length": 0.9,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "Rolls into a perfect ball when threatened. We roll it home anyway."
+ },
+ "garden_snail": {
+  "name": "Garden Snail",
+  "latin": "Cornu aspersum",
+  "category": "mollusc",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 40,
+  "speed": 3,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 20,
+  "size": 30,
+  "weight": 12,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "snail",
+   "segments": 1,
+   "legs": 0,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#a0866a",
+   "accent": "#5a4632",
+   "length": 1.4,
+   "width": 0.8
+  },
+  "sprite_size": 64,
+  "guide": "Carries its house on its back, which seems like a lot of effort when you could just dig one."
+ },
+ "slug": {
+  "name": "Grey Field Slug",
+  "latin": "Deroceras reticulatum",
+  "category": "mollusc",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 30,
+  "speed": 3,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 18,
+  "size": 35,
+  "weight": 10,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "snail",
+   "segments": 1,
+   "legs": 0,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a8070",
+   "accent": "#5a5048",
+   "length": 1.8,
+   "width": 0.5
+  },
+  "sprite_size": 64,
+  "guide": "A snail that sold its house. Leaves a slime trail that confuses our scent trails terribly."
+ },
+ "ladybird": {
+  "name": "Seven-spot Ladybird",
+  "latin": "Coccinella septempunctata",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 12,
+  "speed": 25,
+  "damage": 1,
+  "attack_interval": 1,
+  "loot": 6,
+  "size": 7,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 2,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": true,
+   "spots": 7,
+   "color": "#d42a1a",
+   "accent": "#111111",
+   "length": 0.9,
+   "width": 0.9
+  },
+  "sprite_size": 32,
+  "guide": "Adorable to humans, a menace to our aphid herds. Each spot is one more reason to bite it."
+ },
+ "honeybee": {
+  "name": "Honeybee",
+  "latin": "Apis mellifera",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 15,
+  "speed": 180,
+  "damage": 3,
+  "attack_interval": 1,
+  "loot": 8,
+  "size": 13,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#d8a030",
+   "accent": "#3a2a10",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "Our distant cousin who moved to the sky and got into the honey business. Stings, then regrets it forever."
+ },
+ "bumblebee": {
+  "name": "Bumblebee",
+  "latin": "Bombus terrestris",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 30,
+  "speed": 140,
+  "damage": 3,
+  "attack_interval": 1.2,
+  "loot": 12,
+  "size": 20,
+  "weight": 5,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 2,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#2a2210",
+   "accent": "#f0c020",
+   "length": 1.0,
+   "width": 0.9
+  },
+  "sprite_size": 64,
+  "guide": "A flying fluffball that, according to old science, should not be able to fly. Nobody told it."
+ },
+ "wasp": {
+  "name": "Common Wasp",
+  "latin": "Vespula vulgaris",
+  "category": "insect",
+  "behaviour": "hunter",
+  "layer": "surface",
+  "hp": 35,
+  "speed": 200,
+  "damage": 8,
+  "attack_interval": 0.7,
+  "loot": 12,
+  "size": 16,
+  "weight": 3,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#e8c020",
+   "accent": "#1a1a10",
+   "length": 1.1,
+   "width": 0.5
+  },
+  "sprite_size": 48,
+  "guide": "A bee that chose violence. In late summer it gets drunk on fallen fruit and picks fights."
+ },
+ "hoverfly": {
+  "name": "Hoverfly",
+  "latin": "Syrphidae",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 6,
+  "speed": 220,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 4,
+  "size": 11,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#d8b020",
+   "accent": "#2a2010",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 32,
+  "guide": "Dresses up as a wasp to look tough. Up close it's a total sweetheart that just hangs in the air."
+ },
+ "housefly": {
+  "name": "Housefly",
+  "latin": "Musca domestica",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 5,
+  "speed": 250,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 4,
+  "size": 7,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 4,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#4a4a48",
+   "accent": "#8a2a1a",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 32,
+  "guide": "Tastes with its feet and walks on our food. When it lands dead, it is the perfect snack."
+ },
+ "dead_fly": {
+  "name": "Dead Fly",
+  "latin": "Musca (deceased)",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 1,
+  "speed": 0,
+  "damage": 0,
+  "attack_interval": 1,
+  "loot": 6,
+  "size": 7,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 2,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#3a3a38",
+   "accent": "#1a1a18",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 32,
+  "guide": "Lying on its back, legs in the air, looking terribly dramatic. Two ants can carry it home."
+ },
+ "mosquito": {
+  "name": "Mosquito",
+  "latin": "Culex pipiens",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 2,
+  "speed": 120,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 1,
+  "size": 6,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "summer"
+   ],
+   "weight": 3,
+   "max": 4
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#6a6050",
+   "accent": "#3a3028",
+   "length": 1.0,
+   "width": 0.4
+  },
+  "sprite_size": 32,
+  "guide": "Wants blood but we're too small to bother with. The only thing in the yard humans hate more than us."
+ },
+ "cabbage_white": {
+  "name": "Cabbage White",
+  "latin": "Pieris rapae",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 6,
+  "speed": 150,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 5,
+  "size": 25,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 2,
+   "color": "#f0eee0",
+   "accent": "#2a2a2a",
+   "length": 1.0,
+   "width": 1.8
+  },
+  "sprite_size": 64,
+  "guide": "A floating napkin with ambitions. Its caterpillars are a buffet waiting to happen."
+ },
+ "caterpillar": {
+  "name": "Cabbage Caterpillar",
+  "latin": "Pieris rapae (larva)",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 12,
+  "speed": 2,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 14,
+  "size": 25,
+  "weight": 6,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 12,
+   "legs": 14,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#7aa040",
+   "accent": "#d8c040",
+   "length": 1.6,
+   "width": 0.4
+  },
+  "sprite_size": 48,
+  "guide": "A green sausage that only eats leaves and never says thank you. Soft, slow and very welcome at dinner."
+ },
+ "moth": {
+  "name": "Large Yellow Underwing",
+  "latin": "Noctua pronuba",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 8,
+  "speed": 120,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 6,
+  "size": 22,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a7050",
+   "accent": "#e0b020",
+   "length": 1.0,
+   "width": 1.5
+  },
+  "sprite_size": 48,
+  "guide": "Flies into the porch light over and over, convinced this time will be different."
+ },
+ "centipede": {
+  "name": "Brown Centipede",
+  "latin": "Lithobius forficatus",
+  "category": "myriapod",
+  "behaviour": "hunter",
+  "layer": "nest",
+  "hp": 30,
+  "speed": 60,
+  "damage": 5,
+  "attack_interval": 0.6,
+  "loot": 15,
+  "size": 25,
+  "weight": 6,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "myriapod",
+   "segments": 14,
+   "legs": 30,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#a0602a",
+   "accent": "#5a3010",
+   "length": 1.6,
+   "width": 0.3
+  },
+  "sprite_size": 64,
+  "guide": "Fifteen pairs of legs and a pair of venom fangs. Not one of those legs has ever been used for good."
+ },
+ "millipede": {
+  "name": "Black Snake Millipede",
+  "latin": "Tachypodoiulus niger",
+  "category": "myriapod",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 25,
+  "speed": 6,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 14,
+  "size": 40,
+  "weight": 8,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "myriapod",
+   "segments": 14,
+   "legs": 60,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#1a1a1c",
+   "accent": "#e8e8e8",
+   "length": 2.0,
+   "width": 0.3
+  },
+  "sprite_size": 64,
+  "guide": "Has hundreds of legs and no idea where any of them are. Smells awful when poked; we've checked."
+ },
+ "earwig": {
+  "name": "Common Earwig",
+  "latin": "Forficula auricularia",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 18,
+  "speed": 25,
+  "damage": 2,
+  "attack_interval": 1,
+  "loot": 10,
+  "size": 14,
+  "weight": 3,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#6a3018",
+   "accent": "#c09060",
+   "length": 1.2,
+   "width": 0.4
+  },
+  "sprite_size": 48,
+  "guide": "Waves its bottom pincers like it means business. It mostly means it wants to hide in a flowerpot."
+ },
+ "field_cricket": {
+  "name": "Field Cricket",
+  "latin": "Gryllus campestris",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 20,
+  "speed": 40,
+  "damage": 1,
+  "attack_interval": 1,
+  "loot": 12,
+  "size": 20,
+  "weight": 4,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#2a2018",
+   "accent": "#a07030",
+   "length": 1.2,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "Sings all night by rubbing its wings together. We would sleep, if ants slept."
+ },
+ "grasshopper": {
+  "name": "Meadow Grasshopper",
+  "latin": "Chorthippus parallelus",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 18,
+  "speed": 80,
+  "damage": 1,
+  "attack_interval": 1,
+  "loot": 12,
+  "size": 20,
+  "weight": 4,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#6a9a3a",
+   "accent": "#3a5a1a",
+   "length": 1.4,
+   "width": 0.4
+  },
+  "sprite_size": 48,
+  "guide": "Moves in great leaps for no reason. Somewhere out there, it is still jumping."
+ },
+ "harvestman": {
+  "name": "Harvestman",
+  "latin": "Opiliones",
+  "category": "arachnid",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 8,
+  "speed": 40,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 5,
+  "size": 6,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 1,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a6a4a",
+   "accent": "#4a3a2a",
+   "length": 0.6,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "A pea balanced on eight drinking straws. Not a spider, and very tired of being told it is."
+ },
+ "garden_spider": {
+  "name": "Garden Spider",
+  "latin": "Araneus diadematus",
+  "category": "arachnid",
+  "behaviour": "hunter",
+  "layer": "surface",
+  "hp": 60,
+  "speed": 20,
+  "damage": 8,
+  "attack_interval": 0.6,
+  "loot": 25,
+  "size": 13,
+  "weight": 6,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 2,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 1,
+   "color": "#a0702a",
+   "accent": "#f0e0c0",
+   "length": 1.0,
+   "width": 0.9
+  },
+  "sprite_size": 64,
+  "guide": "Builds a beautiful wheel of silk and waits. Admire it from a very long way away."
+ },
+ "money_spider": {
+  "name": "Money Spider",
+  "latin": "Linyphiidae",
+  "category": "arachnid",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 4,
+  "speed": 30,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 2,
+  "size": 2,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 4,
+   "max": 4
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 2,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#2a2a2a",
+   "accent": "#5a3a2a",
+   "length": 1.0,
+   "width": 0.8
+  },
+  "sprite_size": 32,
+  "guide": "Smaller than our head. Humans think it brings luck; to us it brings a snack."
+ },
+ "springtail": {
+  "name": "Springtail",
+  "latin": "Collembola",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "nest",
+  "hp": 2,
+  "speed": 20,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 1,
+  "size": 2,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 5,
+   "max": 6
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#c0c0b0",
+   "accent": "#7a7a70",
+   "length": 1.0,
+   "width": 0.5
+  },
+  "sprite_size": 32,
+  "guide": "Has a spring under its tummy and launches itself away whenever we get close. Rude."
+ },
+ "lacewing": {
+  "name": "Green Lacewing",
+  "latin": "Chrysopidae",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 6,
+  "speed": 100,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 4,
+  "size": 15,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 2,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8ad06a",
+   "accent": "#d0e8a0",
+   "length": 1.0,
+   "width": 1.4
+  },
+  "sprite_size": 48,
+  "guide": "Looks like a fairy. Its larvae eat aphids by the hundred. Fairies can be monsters."
+ },
+ "leafhopper": {
+  "name": "Leafhopper",
+  "latin": "Cicadellidae",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 3,
+  "speed": 60,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 2,
+  "size": 4,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 4,
+   "max": 4
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#7ac040",
+   "accent": "#c0e070",
+   "length": 1.0,
+   "width": 0.4
+  },
+  "sprite_size": 32,
+  "guide": "A tiny green rocket that sips plant juice. Blink and it has teleported to another leaf."
+ },
+ "froghopper": {
+  "name": "Froghopper",
+  "latin": "Philaenus spumarius",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 3,
+  "speed": 40,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 2,
+  "size": 6,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a6a3a",
+   "accent": "#e8e0c0",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 32,
+  "guide": "Its children live in bubbles of spit. Humans call it cuckoo spit; we call it a hard pass."
+ },
+ "shield_bug": {
+  "name": "Green Shield Bug",
+  "latin": "Palomena prasina",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 20,
+  "speed": 12,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 10,
+  "size": 13,
+  "weight": 3,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 2,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#5a9a3a",
+   "accent": "#3a5a20",
+   "length": 1.0,
+   "width": 0.9
+  },
+  "sprite_size": 48,
+  "guide": "Shaped like a medieval shield and smells like a medieval moat when bothered."
+ },
+ "vine_weevil": {
+  "name": "Vine Weevil",
+  "latin": "Otiorhynchus sulcatus",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 20,
+  "speed": 8,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 10,
+  "size": 9,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#2a2620",
+   "accent": "#c0a060",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 32,
+  "guide": "A beetle with an elephant's nose. It plays dead when touched, which saves us a step."
+ },
+ "rove_beetle": {
+  "name": "Devil's Coach-horse",
+  "latin": "Ocypus olens",
+  "category": "insect",
+  "behaviour": "hunter",
+  "layer": "surface",
+  "hp": 40,
+  "speed": 45,
+  "damage": 6,
+  "attack_interval": 0.6,
+  "loot": 18,
+  "size": 25,
+  "weight": 5,
+  "spawn": {
+   "seasons": [
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 5,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#111111",
+   "accent": "#3a3a3a",
+   "length": 1.6,
+   "width": 0.4
+  },
+  "sprite_size": 48,
+  "guide": "Raises its tail like a scorpion and opens its jaws wide. Sounds like a pub name, acts like a bouncer."
+ },
+ "click_beetle": {
+  "name": "Click Beetle",
+  "latin": "Elateridae",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 14,
+  "speed": 20,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 8,
+  "size": 12,
+  "weight": 2,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#6a4a2a",
+   "accent": "#3a2a1a",
+   "length": 1.2,
+   "width": 0.5
+  },
+  "sprite_size": 48,
+  "guide": "When flipped on its back it snaps itself into the air with a loud click. Show-off."
+ },
+ "dung_beetle": {
+  "name": "Dor Beetle",
+  "latin": "Geotrupes stercorarius",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 30,
+  "speed": 15,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 16,
+  "size": 20,
+  "weight": 5,
+  "spawn": {
+   "seasons": [
+    "summer",
+    "autumn"
+   ],
+   "weight": 2,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#1a1a3a",
+   "accent": "#4a3a8a",
+   "length": 1.1,
+   "width": 0.8
+  },
+  "sprite_size": 64,
+  "guide": "Spends its life rolling and burying the yard's least loved resource. A true hero."
+ },
+ "stag_beetle": {
+  "name": "Stag Beetle",
+  "latin": "Lucanus cervus",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 120,
+  "speed": 12,
+  "damage": 6,
+  "attack_interval": 1.2,
+  "loot": 35,
+  "size": 60,
+  "weight": 20,
+  "spawn": {
+   "seasons": [
+    "summer"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": true,
+   "spots": 0,
+   "color": "#3a1a10",
+   "accent": "#8a3a20",
+   "length": 1.4,
+   "width": 0.7
+  },
+  "sprite_size": 96,
+  "guide": "Huge antler-jaws used only for wrestling other stag beetles. Impressively useless, like most romance."
+ },
+ "crane_fly": {
+  "name": "Crane Fly",
+  "latin": "Tipula paludosa",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 4,
+  "speed": 80,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 4,
+  "size": 25,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "autumn"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#a08a6a",
+   "accent": "#5a4a3a",
+   "length": 1.4,
+   "width": 1.0
+  },
+  "sprite_size": 48,
+  "guide": "Daddy-long-legs: drops a leg every time it panics, which is always."
+ },
+ "damselfly": {
+  "name": "Azure Damselfly",
+  "latin": "Coenagrion puella",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "surface",
+  "hp": 5,
+  "speed": 150,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 4,
+  "size": 33,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "summer"
+   ],
+   "weight": 2,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 10,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#3a8ad8",
+   "accent": "#111111",
+   "length": 1.8,
+   "width": 0.8
+  },
+  "sprite_size": 64,
+  "guide": "A blue needle that hovers near the birdbath. Too elegant to notice us, which suits us fine."
+ },
+ "thrips": {
+  "name": "Thrips",
+  "latin": "Thysanoptera",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 1,
+  "speed": 10,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 1,
+  "size": 1,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "summer"
+   ],
+   "weight": 4,
+   "max": 6
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#3a3020",
+   "accent": "#8a7050",
+   "length": 1.0,
+   "width": 0.3
+  },
+  "sprite_size": 32,
+  "guide": "One thrips, two thrips, still thrips. The only creature smaller and more numerous than us."
+ },
+ "red_velvet_mite": {
+  "name": "Red Velvet Mite",
+  "latin": "Trombidium holosericeum",
+  "category": "arachnid",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 4,
+  "speed": 15,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 2,
+  "size": 4,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 1,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#e02010",
+   "accent": "#a01008",
+   "length": 0.8,
+   "width": 0.8
+  },
+  "sprite_size": 32,
+  "guide": "A walking red velvet cushion. Tastes terrible, which is probably why it can afford to be that colour."
+ },
+ "tick": {
+  "name": "Castor Bean Tick",
+  "latin": "Ixodes ricinus",
+  "category": "arachnid",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 6,
+  "speed": 4,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 3,
+  "size": 3,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 2,
+   "max": 2
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 1,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": true,
+   "spots": 0,
+   "color": "#5a2a1a",
+   "accent": "#2a1a10",
+   "length": 0.9,
+   "width": 0.8
+  },
+  "sprite_size": 32,
+  "guide": "Waits on a grass blade for something warm to walk past. We are not warm. It is disappointed."
+ },
+ "mite": {
+  "name": "Soil Mite",
+  "latin": "Oribatida",
+  "category": "arachnid",
+  "behaviour": "ambient",
+  "layer": "nest",
+  "hp": 2,
+  "speed": 6,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 1,
+  "size": 1,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 5,
+   "max": 6
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 1,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": true,
+   "spots": 0,
+   "color": "#6a4a2a",
+   "accent": "#3a2a1a",
+   "length": 0.8,
+   "width": 0.8
+  },
+  "sprite_size": 32,
+  "guide": "A crumb with legs that lives in our walls. Eats mould, so we let it stay. Mostly."
+ },
+ "blackbird": {
+  "name": "Blackbird",
+  "latin": "Turdus merula",
+  "category": "bird",
+  "behaviour": "swooper",
+  "layer": "surface",
+  "hp": 9999,
+  "speed": 380,
+  "damage": 999,
+  "attack_interval": 2.2,
+  "loot": 0,
+  "size": 250,
+  "weight": 999,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "bird",
+   "segments": 3,
+   "legs": 0,
+   "wings": 2,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#141414",
+   "accent": "#e8a020",
+   "length": 1.2,
+   "width": 0.8
+  },
+  "sprite_size": 128,
+  "guide": "Hops across the lawn listening for worms. Hears us too. Run."
+ },
+ "sparrow": {
+  "name": "House Sparrow",
+  "latin": "Passer domesticus",
+  "category": "bird",
+  "behaviour": "swooper",
+  "layer": "surface",
+  "hp": 9999,
+  "speed": 420,
+  "damage": 999,
+  "attack_interval": 1.8,
+  "loot": 0,
+  "size": 150,
+  "weight": 999,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "bird",
+   "segments": 3,
+   "legs": 0,
+   "wings": 2,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a6a4a",
+   "accent": "#4a3a2a",
+   "length": 1.0,
+   "width": 0.8
+  },
+  "sprite_size": 128,
+  "guide": "Chirpy, brown and always in a gang. Eats crumbs, seeds and, on bad days, ants."
+ },
+ "frog": {
+  "name": "Common Frog",
+  "latin": "Rana temporaria",
+  "category": "amphibian",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 9999,
+  "speed": 200,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 0,
+  "size": 80,
+  "weight": 500,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "amphibian",
+   "segments": 2,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 6,
+   "color": "#8a8a3a",
+   "accent": "#4a3a1a",
+   "length": 1.2,
+   "width": 0.9
+  },
+  "sprite_size": 128,
+  "guide": "Has a tongue faster than our reflexes. Thankfully it prefers flies that hold still."
+ },
+ "toad": {
+  "name": "Common Toad",
+  "latin": "Bufo bufo",
+  "category": "amphibian",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 9999,
+  "speed": 60,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 0,
+  "size": 90,
+  "weight": 600,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "amphibian",
+   "segments": 2,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 10,
+   "color": "#8a6a40",
+   "accent": "#5a4028",
+   "length": 1.1,
+   "width": 1.0
+  },
+  "sprite_size": 128,
+  "guide": "A grumpy lump of warts that lives under the shed. Antonia says it ate her cousin. Antonia says a lot."
+ },
+ "hedgehog": {
+  "name": "Hedgehog",
+  "latin": "Erinaceus europaeus",
+  "category": "mammal",
+  "behaviour": "ambient",
+  "layer": "surface",
+  "hp": 9999,
+  "speed": 250,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 0,
+  "size": 250,
+  "weight": 2000,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "mammal",
+   "segments": 2,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#7a5a3a",
+   "accent": "#3a2a1a",
+   "length": 1.2,
+   "width": 0.9
+  },
+  "sprite_size": 128,
+  "guide": "A pincushion that snuffles through the flowerbeds at night eating beetles. We approve of half of that."
+ },
+ "mouse": {
+  "name": "House Mouse",
+  "latin": "Mus musculus",
+  "category": "mammal",
+  "behaviour": "ambient",
+  "layer": "house",
+  "hp": 9999,
+  "speed": 350,
+  "damage": 0,
+  "attack_interval": 3,
+  "loot": 0,
+  "size": 80,
+  "weight": 300,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "mammal",
+   "segments": 2,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a7a6a",
+   "accent": "#e0b0a0",
+   "length": 1.4,
+   "width": 0.6
+  },
+  "sprite_size": 128,
+  "guide": "Lives behind the skirting board and steals the same crumbs we do. Professional rival, personal friend."
+ },
+ "wireworm": {
+  "name": "Wireworm",
+  "latin": "Agriotes (larva)",
+  "category": "insect",
+  "behaviour": "burrower",
+  "layer": "nest",
+  "hp": 30,
+  "speed": 4,
+  "damage": 1,
+  "attack_interval": 3,
+  "loot": 12,
+  "size": 20,
+  "weight": 4,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 2,
+   "max": 1
+  },
+  "body": {
+   "plan": "worm",
+   "segments": 12,
+   "legs": 6,
+   "wings": 0,
+   "antennae": false,
+   "shell": true,
+   "spots": 0,
+   "color": "#d8a040",
+   "accent": "#8a5a20",
+   "length": 1.6,
+   "width": 0.3
+  },
+  "sprite_size": 48,
+  "guide": "A click beetle's child that chews through roots and tunnels. Teenagers, honestly."
+ },
+ "leatherjacket": {
+  "name": "Leatherjacket",
+  "latin": "Tipula (larva)",
+  "category": "insect",
+  "behaviour": "burrower",
+  "layer": "nest",
+  "hp": 40,
+  "speed": 3,
+  "damage": 0,
+  "attack_interval": 4,
+  "loot": 16,
+  "size": 30,
+  "weight": 6,
+  "spawn": {
+   "seasons": [
+    "autumn",
+    "winter",
+    "spring"
+   ],
+   "weight": 2,
+   "max": 1
+  },
+  "body": {
+   "plan": "worm",
+   "segments": 10,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#6a6050",
+   "accent": "#3a3028",
+   "length": 1.6,
+   "width": 0.4
+  },
+  "sprite_size": 64,
+  "guide": "The crane fly's grub: a tough grey bag that eats grass roots and blunders into our tunnels."
+ },
+ "chafer_grub": {
+  "name": "Chafer Grub",
+  "latin": "Melolontha (larva)",
+  "category": "insect",
+  "behaviour": "burrower",
+  "layer": "nest",
+  "hp": 60,
+  "speed": 2,
+  "damage": 0,
+  "attack_interval": 4,
+  "loot": 25,
+  "size": 40,
+  "weight": 10,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "worm",
+   "segments": 10,
+   "legs": 6,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#f0e8d0",
+   "accent": "#a07040",
+   "length": 1.4,
+   "width": 0.7
+  },
+  "sprite_size": 64,
+  "guide": "A curled-up white grub the size of a palace. Digs slowly, eats roots, and never apologises."
+ },
+ "pot_worm": {
+  "name": "Pot Worm",
+  "latin": "Enchytraeidae",
+  "category": "worm",
+  "behaviour": "ambient",
+  "layer": "nest",
+  "hp": 4,
+  "speed": 3,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 3,
+  "size": 15,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 4,
+   "max": 4
+  },
+  "body": {
+   "plan": "worm",
+   "segments": 12,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#f0e8e0",
+   "accent": "#c0b0a0",
+   "length": 1.6,
+   "width": 0.3
+  },
+  "sprite_size": 32,
+  "guide": "A tiny white thread that wiggles through damp soil. Shows up wherever we get careless with the midden."
+ },
+ "nematode": {
+  "name": "Nematode",
+  "latin": "Nematoda",
+  "category": "worm",
+  "behaviour": "ambient",
+  "layer": "nest",
+  "hp": 1,
+  "speed": 2,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 1,
+  "size": 1,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 6
+  },
+  "body": {
+   "plan": "worm",
+   "segments": 8,
+   "legs": 0,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#e0e0d0",
+   "accent": "#b0b0a0",
+   "length": 1.4,
+   "width": 0.3
+  },
+  "sprite_size": 32,
+  "guide": "There are more of these in a handful of soil than ants in the colony. Thankfully they mind their own business."
+ },
+ "mole_cricket": {
+  "name": "Mole Cricket",
+  "latin": "Gryllotalpa gryllotalpa",
+  "category": "insect",
+  "behaviour": "burrower",
+  "layer": "nest",
+  "hp": 50,
+  "speed": 10,
+  "damage": 3,
+  "attack_interval": 1,
+  "loot": 20,
+  "size": 40,
+  "weight": 8,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#6a4a2a",
+   "accent": "#3a2a1a",
+   "length": 1.3,
+   "width": 0.6
+  },
+  "sprite_size": 64,
+  "guide": "Half cricket, half mole, all trouble. Has shovels for hands and dreams of our tunnels."
+ },
+ "silverfish": {
+  "name": "Silverfish",
+  "latin": "Lepisma saccharinum",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "house",
+  "hp": 6,
+  "speed": 40,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 4,
+  "size": 12,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 10,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#b0b8c0",
+   "accent": "#7a8088",
+   "length": 1.4,
+   "width": 0.4
+  },
+  "sprite_size": 32,
+  "guide": "A shiny fish-shaped thing that eats wallpaper glue and book bindings. Very literary."
+ },
+ "cockroach": {
+  "name": "German Cockroach",
+  "latin": "Blattella germanica",
+  "category": "insect",
+  "behaviour": "raider",
+  "layer": "house",
+  "hp": 40,
+  "speed": 90,
+  "damage": 3,
+  "attack_interval": 0.8,
+  "loot": 18,
+  "size": 14,
+  "weight": 4,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 1,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a5a2a",
+   "accent": "#3a2a1a",
+   "length": 1.2,
+   "width": 0.6
+  },
+  "sprite_size": 48,
+  "guide": "Will survive the end of the world, and in the meantime it wants your sugar. Fight it for every grain."
+ },
+ "dust_mite": {
+  "name": "Dust Mite",
+  "latin": "Dermatophagoides",
+  "category": "arachnid",
+  "behaviour": "ambient",
+  "layer": "house",
+  "hp": 1,
+  "speed": 2,
+  "damage": 0,
+  "attack_interval": 5,
+  "loot": 1,
+  "size": 1,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 5,
+   "max": 6
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 1,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#e0d8c8",
+   "accent": "#a09888",
+   "length": 0.8,
+   "width": 0.7
+  },
+  "sprite_size": 32,
+  "guide": "Lives in the carpet and eats human skin flakes. Gross, even by our standards, and we live in dirt."
+ },
+ "fruit_fly": {
+  "name": "Fruit Fly",
+  "latin": "Drosophila melanogaster",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "house",
+  "hp": 2,
+  "speed": 100,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 1,
+  "size": 3,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 4,
+   "max": 4
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#c09050",
+   "accent": "#c02010",
+   "length": 1.0,
+   "width": 0.6
+  },
+  "sprite_size": 32,
+  "guide": "Appears by magic around the fruit bowl. Scientists love it; it loves the bin."
+ },
+ "bed_bug": {
+  "name": "Bed Bug",
+  "latin": "Cimex lectularius",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "house",
+  "hp": 6,
+  "speed": 15,
+  "damage": 1,
+  "attack_interval": 2,
+  "loot": 3,
+  "size": 5,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 2,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 2,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#8a3a1a",
+   "accent": "#5a2010",
+   "length": 0.9,
+   "width": 0.8
+  },
+  "sprite_size": 32,
+  "guide": "The homeowner's least favourite lodger. Nobody has ever been happy to meet one, us included."
+ },
+ "house_spider": {
+  "name": "House Spider",
+  "latin": "Eratigena atrica",
+  "category": "arachnid",
+  "behaviour": "hunter",
+  "layer": "house",
+  "hp": 70,
+  "speed": 70,
+  "damage": 9,
+  "attack_interval": 0.5,
+  "loot": 25,
+  "size": 15,
+  "weight": 6,
+  "spawn": {
+   "seasons": [
+    "autumn",
+    "winter"
+   ],
+   "weight": 1,
+   "max": 1
+  },
+  "body": {
+   "plan": "arachnid",
+   "segments": 2,
+   "legs": 8,
+   "wings": 0,
+   "antennae": false,
+   "shell": false,
+   "spots": 0,
+   "color": "#6a4a30",
+   "accent": "#3a2a18",
+   "length": 1.0,
+   "width": 0.8
+  },
+  "sprite_size": 64,
+  "guide": "Sprints across the carpet in autumn looking for love. Will settle for an ant."
+ },
+ "booklouse": {
+  "name": "Booklouse",
+  "latin": "Liposcelis",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "house",
+  "hp": 1,
+  "speed": 10,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 1,
+  "size": 1,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 4
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 0,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#d8c8a8",
+   "accent": "#a09070",
+   "length": 1.0,
+   "width": 0.5
+  },
+  "sprite_size": 32,
+  "guide": "Lives in old books, eats mould and has never finished a single chapter."
+ },
+ "clothes_moth": {
+  "name": "Clothes Moth",
+  "latin": "Tineola bisselliella",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "house",
+  "hp": 3,
+  "speed": 60,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 2,
+  "size": 7,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 2
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 4,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#d8c080",
+   "accent": "#a08a50",
+   "length": 1.0,
+   "width": 1.0
+  },
+  "sprite_size": 32,
+  "guide": "Has eaten holes in every jumper in the wardrobe. We respect the commitment."
+ },
+ "carpet_beetle": {
+  "name": "Varied Carpet Beetle",
+  "latin": "Anthrenus verbasci",
+  "category": "insect",
+  "behaviour": "ambient",
+  "layer": "house",
+  "hp": 6,
+  "speed": 8,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 3,
+  "size": 3,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 2,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": true,
+   "spots": 3,
+   "color": "#5a4a3a",
+   "accent": "#e0d0a0",
+   "length": 0.9,
+   "width": 0.8
+  },
+  "sprite_size": 32,
+  "guide": "Looks like a speckled pebble. Its fuzzy children eat the carpet one fibre at a time."
+ },
+ "drain_fly": {
+  "name": "Drain Fly",
+  "latin": "Psychodidae",
+  "category": "insect",
+  "behaviour": "ambient_flyer",
+  "layer": "house",
+  "hp": 1,
+  "speed": 60,
+  "damage": 0,
+  "attack_interval": 2,
+  "loot": 1,
+  "size": 3,
+  "weight": 1,
+  "spawn": {
+   "seasons": [
+    "spring",
+    "summer",
+    "autumn",
+    "winter"
+   ],
+   "weight": 3,
+   "max": 3
+  },
+  "body": {
+   "plan": "insect",
+   "segments": 3,
+   "legs": 6,
+   "wings": 2,
+   "antennae": true,
+   "shell": false,
+   "spots": 0,
+   "color": "#7a7068",
+   "accent": "#4a4038",
+   "length": 1.0,
+   "width": 1.2
+  },
+  "sprite_size": 32,
+  "guide": "A fuzzy heart-shaped fly that lives in the plughole. The kitchen sink is its kingdom."
+ }
+}

@@ -1,0 +1,9 @@
+{
+  "queen":      {"name": "Queen Chamber", "min_cells": 20, "color": "#b0412e", "requires": "", "capacity_per_cell": 0,  "brood_per_cell": 1.0, "desc": "Where the queen lays. One per nest."},
+  "nursery":    {"name": "Nursery",       "min_cells": 16, "color": "#e0b84a", "requires": "", "capacity_per_cell": 0,  "brood_per_cell": 2.0, "desc": "Brood grows here. Nurses tend larvae."},
+  "food_store": {"name": "Food Store",    "min_cells": 16, "color": "#6fae3c", "requires": "", "capacity_per_cell": 4,  "brood_per_cell": 0.0, "desc": "Raises store capacity."},
+  "water":      {"name": "Water Store",   "min_cells": 12, "color": "#3c7fae", "requires": "", "capacity_per_cell": 2,  "brood_per_cell": 0.0, "desc": "Collects seepage as drinking water."},
+  "midden":     {"name": "Midden",        "min_cells": 12, "color": "#6e5d4a", "requires": "", "capacity_per_cell": 0,  "brood_per_cell": 0.0, "desc": "Waste and corpses go here instead of rotting in the halls."},
+  "fungus":     {"name": "Fungus Garden", "min_cells": 20, "color": "#d8d0e8", "requires": "chamber:fungus", "capacity_per_cell": 2, "brood_per_cell": 0.0, "desc": "Leaves in, fungus out. Needs warmth and damp."},
+  "sump":       {"name": "Drainage Sump", "min_cells": 4,  "color": "#2a5a7a", "requires": "", "capacity_per_cell": 0,  "brood_per_cell": 0.0, "desc": "Drains flood water away."}
+}

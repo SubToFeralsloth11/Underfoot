@@ -1,0 +1,41 @@
+{
+  "id": "yard_01",
+  "name": "The Abandoned Backyard",
+  "size_mm": [20000, 15000],
+  "entrance": [6000, 9000],
+  "rival_entrance": [14500, 11500],
+  "house_gaps": [[8000, 1200]],
+  "sprinkler": {"pos": [10500, 7500], "radius": 2200, "hour": 7, "hours": 1},
+  "ground_noise": {"dirt": 0.62, "frequency": 0.0006},
+  "ground_patches": [
+    {"type": "paving", "rect": [5000, 1200, 7000, 2400]},
+    {"type": "paving", "rect": [8200, 3600, 700, 6000]},
+    {"type": "mulch",  "rect": [1200, 1600, 3000, 1400]},
+    {"type": "mulch",  "rect": [13500, 1600, 4000, 1200]},
+    {"type": "dirt",   "rect": [2500, 11500, 3500, 2000]},
+    {"type": "mulch",  "rect": [600, 6000, 900, 6000]}
+  ],
+  "objects": [
+    {"type": "house_wall", "shape": "rect", "pos": [10000, 600],  "size": [20000, 1200], "block": true},
+    {"type": "shed",       "shape": "rect", "pos": [17200, 4600], "size": [3000, 2600], "block": true},
+    {"type": "bbq",        "shape": "rect", "pos": [7200, 3000],  "size": [700, 500],   "block": true},
+    {"type": "gnome",      "shape": "circle", "pos": [11800, 10800], "size": [160, 160], "block": true},
+    {"type": "tree",       "shape": "circle", "pos": [3400, 5200],  "size": [240, 240], "block": true, "canopy": 2400},
+    {"type": "tree",       "shape": "circle", "pos": [15800, 9800], "size": [300, 300], "block": true, "canopy": 2800},
+    {"type": "hose",       "shape": "line", "points": [[12000, 1300], [12400, 2600], [11600, 3800], [12600, 5200], [13800, 5600]], "size": [70, 70], "block": true},
+    {"type": "chair",      "shape": "rect", "pos": [6200, 2400],  "size": [500, 500],   "block": true},
+    {"type": "chair",      "shape": "rect", "pos": [9600, 2500],  "size": [500, 500],   "block": true},
+    {"type": "pot",        "shape": "circle", "pos": [4600, 2400], "size": [260, 260], "block": true},
+    {"type": "brick",      "shape": "rect", "pos": [7400, 9600],  "size": [220, 100],   "block": true},
+    {"type": "brick",      "shape": "rect", "pos": [5200, 8300],  "size": [100, 220],   "block": true},
+    {"type": "watering_can","shape": "circle", "pos": [9000, 12000], "size": [300, 300], "block": true}
+  ],
+  "flowers": [[1600, 2000], [2400, 2300], [3200, 1900], [3900, 2600], [14000, 2000], [15200, 2200], [16500, 1900], [900, 7000], [1100, 9000], [900, 11000]],
+  "scatter": {"pebbles": 900, "grass_clumps": 2500, "leaves": 400},
+  "foods": [
+    {"food": "dropped_chip", "pos": [6380, 8650]},
+    {"food": "dead_fly", "pos": [5650, 9400]},
+    {"food": "berry", "pos": [6900, 9700]},
+    {"food": "seed_head", "pos": [5200, 9800]}
+  ]
+}

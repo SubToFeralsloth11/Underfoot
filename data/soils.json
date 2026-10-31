@@ -1,0 +1,18 @@
+{
+  "air":      {"index": 0,  "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 1.0,  "color": "#1b120c", "diggable": false, "support": false},
+  "topsoil":  {"index": 1,  "dig_time": 0.6, "collapse_chance": 0.05, "max_span": 10,  "drains": 0.6,  "color": "#4f3520", "diggable": true,  "support": false},
+  "loam":     {"index": 2,  "dig_time": 1.0, "collapse_chance": 0.05, "max_span": 14,  "drains": 0.5,  "color": "#6b4a2b", "diggable": true,  "support": false},
+  "clay":     {"index": 3,  "dig_time": 1.8, "collapse_chance": 0.03, "max_span": 20,  "drains": 0.1,  "color": "#8a5a3c", "diggable": true,  "support": false},
+  "sand":     {"index": 4,  "dig_time": 0.5, "collapse_chance": 0.25, "max_span": 8,   "drains": 0.95, "color": "#c2a46b", "diggable": true,  "support": false},
+  "gravel":   {"index": 5,  "dig_time": 2.5, "collapse_chance": 0.08, "max_span": 12,  "drains": 0.9,  "color": "#7d7468", "diggable": true,  "support": false},
+  "bedrock":  {"index": 6,  "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#34302e", "diggable": false, "support": true},
+  "root":     {"index": 7,  "dig_time": 3.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.3,  "color": "#a07850", "diggable": true,  "support": true},
+  "stone":    {"index": 8,  "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#8c8a86", "diggable": false, "support": true},
+  "pillar":   {"index": 9,  "dig_time": 1.5, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.2,  "color": "#9b6b44", "diggable": true,  "support": true},
+  "rubble":   {"index": 10, "dig_time": 0.4, "collapse_chance": 0.3,  "max_span": 6,   "drains": 0.7,  "color": "#5e4632", "diggable": true,  "support": false},
+  "seal":     {"index": 11, "dig_time": 0.8, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#a8693f", "diggable": true,  "support": true},
+  "wall":     {"index": 12, "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#d8cfc0", "diggable": false, "support": true},
+  "timber":   {"index": 13, "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#8b6440", "diggable": false, "support": true},
+  "tile":     {"index": 14, "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#e9e4da", "diggable": false, "support": true},
+  "brick":    {"index": 15, "dig_time": 0.0, "collapse_chance": 0.0,  "max_span": 999, "drains": 0.0,  "color": "#9c4b36", "diggable": false, "support": true}
+}

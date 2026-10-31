@@ -1,0 +1,632 @@
+{
+ "trap_jaw": {
+  "branch": "jaws",
+  "name": "Trap-jaw",
+  "desc": "Spring-loaded mandibles snap shut faster than a blink.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "caste.soldier.attack": 1.3
+  },
+  "unlock": [
+   "behaviour:trap_jaw"
+  ]
+ },
+ "thick_cuticle": {
+  "branch": "jaws",
+  "name": "Thick Cuticle",
+  "desc": "Tougher exoskeletons shrug off bites and stings.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "ant.hp": 1.2,
+   "combat.damage_taken": 0.9
+  },
+  "unlock": []
+ },
+ "serrated_mandibles": {
+  "branch": "jaws",
+  "name": "Serrated Mandibles",
+  "desc": "Saw-toothed jaws cut through prey and leaves alike.",
+  "cost": 1,
+  "tier": 2,
+  "requires": [
+   "trap_jaw"
+  ],
+  "mult": {
+   "ant.attack": 1.15,
+   "forage.harvest": 1.1
+  },
+  "unlock": []
+ },
+ "majors": {
+  "branch": "jaws",
+  "name": "Majors",
+  "desc": "Big-headed bruisers hatch from well-fed larvae.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "thick_cuticle"
+  ],
+  "mult": {},
+  "unlock": [
+   "caste:major"
+  ]
+ },
+ "iron_grip": {
+  "branch": "jaws",
+  "name": "Iron Grip",
+  "desc": "Ants lock on and never let go, pinning prey for the swarm.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "trap_jaw"
+  ],
+  "mult": {
+   "ant.grip": 1.5
+  },
+  "unlock": []
+ },
+ "butchers": {
+  "branch": "jaws",
+  "name": "Butchers",
+  "desc": "Carcasses are cut up neatly, wasting nothing.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "serrated_mandibles"
+  ],
+  "mult": {
+   "creature.loot": 1.3
+  },
+  "unlock": []
+ },
+ "decapitate": {
+  "branch": "jaws",
+  "name": "Decapitate",
+  "desc": "Soldiers aim for the neck. Grim, effective.",
+  "cost": 3,
+  "tier": 3,
+  "requires": [
+   "iron_grip"
+  ],
+  "mult": {
+   "caste.soldier.attack": 1.2
+  },
+  "unlock": [
+   "behaviour:decapitate"
+  ]
+ },
+ "colossus_heads": {
+  "branch": "jaws",
+  "name": "Colossus Heads",
+  "desc": "Majors grow heads like boulders and bodies to match.",
+  "cost": 3,
+  "tier": 4,
+  "requires": [
+   "majors",
+   "decapitate"
+  ],
+  "mult": {
+   "caste.major.hp": 1.5,
+   "caste.major.attack": 1.4
+  },
+  "unlock": []
+ },
+ "formic_spray": {
+  "branch": "chemistry",
+  "name": "Formic Spray",
+  "desc": "Soldiers squirt acid from their abdomens at range.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "caste.soldier.attack": 1.1
+  },
+  "unlock": [
+   "behaviour:formic_spray"
+  ]
+ },
+ "long_scent": {
+  "branch": "chemistry",
+  "name": "Long Scent",
+  "desc": "Trail pheromones linger twice as long.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "pheromone.decay": 0.5
+  },
+  "unlock": []
+ },
+ "keen_antennae": {
+  "branch": "chemistry",
+  "name": "Keen Antennae",
+  "desc": "Ants smell trails from further away.",
+  "cost": 1,
+  "tier": 2,
+  "requires": [
+   "long_scent"
+  ],
+  "mult": {
+   "pheromone.sense_radius": 1.3
+  },
+  "unlock": []
+ },
+ "loud_alarm": {
+  "branch": "chemistry",
+  "name": "Loud Alarm",
+  "desc": "Alarm scent carries across the whole lawn.",
+  "cost": 1,
+  "tier": 2,
+  "requires": [
+   "formic_spray"
+  ],
+  "mult": {
+   "combat.alarm_radius": 1.6
+  },
+  "unlock": []
+ },
+ "royal_jelly_scent": {
+  "branch": "chemistry",
+  "name": "Royal Command",
+  "desc": "The Queen's scent orders carry extra weight.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "long_scent"
+  ],
+  "mult": {
+   "pheromone.player_strength": 1.5
+  },
+  "unlock": []
+ },
+ "fear_musk": {
+  "branch": "chemistry",
+  "name": "Fear Musk",
+  "desc": "A sickly stench that sends creatures scurrying.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "loud_alarm"
+  ],
+  "mult": {},
+  "unlock": [
+   "behaviour:fear_musk"
+  ]
+ },
+ "antiseptic_glands": {
+  "branch": "chemistry",
+  "name": "Antiseptic Glands",
+  "desc": "Metapleural secretions keep the nest clean of mould.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "keen_antennae"
+  ],
+  "mult": {
+   "mould.growth": 0.5
+  },
+  "unlock": []
+ },
+ "masking_odour": {
+  "branch": "chemistry",
+  "name": "Masking Odour",
+  "desc": "Trails smell of nothing to humans and cats.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "royal_jelly_scent"
+  ],
+  "mult": {
+   "house.escalation": 0.7
+  },
+  "unlock": []
+ },
+ "acid_cloud": {
+  "branch": "chemistry",
+  "name": "Acid Cloud",
+  "desc": "Massed spray leaves enemies blind and sore.",
+  "cost": 3,
+  "tier": 4,
+  "requires": [
+   "fear_musk"
+  ],
+  "mult": {
+   "ant.attack": 1.2,
+   "combat.damage_taken": 0.85
+  },
+  "unlock": []
+ },
+ "aphid_ranching": {
+  "branch": "agriculture",
+  "name": "Aphid Ranching",
+  "desc": "Herd and milk aphids for a steady honeydew supply.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {},
+  "unlock": [
+   "behaviour:aphid_ranching"
+  ]
+ },
+ "efficient_crops": {
+  "branch": "agriculture",
+  "name": "Thrifty Stomachs",
+  "desc": "Ants share food mouth-to-mouth with less waste.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "colony.food_cost": 0.85
+  },
+  "unlock": []
+ },
+ "honeydew_tending": {
+  "branch": "agriculture",
+  "name": "Gentle Milking",
+  "desc": "Better stroking technique, more honeydew per aphid.",
+  "cost": 1,
+  "tier": 2,
+  "requires": [
+   "aphid_ranching"
+  ],
+  "mult": {
+   "forage.harvest": 1.25
+  },
+  "unlock": []
+ },
+ "seed_granary": {
+  "branch": "agriculture",
+  "name": "Seed Granary",
+  "desc": "Harvester ants collect and store seeds that never spoil.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "efficient_crops"
+  ],
+  "mult": {
+   "colony.store_capacity": 1.2
+  },
+  "unlock": [
+   "behaviour:seed_granary"
+  ]
+ },
+ "repletes": {
+  "branch": "agriculture",
+  "name": "Honeypot Repletes",
+  "desc": "Some workers swell into living sugar jars.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "efficient_crops"
+  ],
+  "mult": {
+   "colony.store_capacity": 1.4
+  },
+  "unlock": []
+ },
+ "leafcutter": {
+  "branch": "agriculture",
+  "name": "Leafcutter",
+  "desc": "Cut leaves to farm fungus in special chambers.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "honeydew_tending"
+  ],
+  "mult": {},
+  "unlock": [
+   "behaviour:leafcutter",
+   "chamber:fungus"
+  ]
+ },
+ "nursery_gardens": {
+  "branch": "agriculture",
+  "name": "Nursery Gardens",
+  "desc": "Well-fed larvae grow up faster.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "repletes"
+  ],
+  "mult": {
+   "colony.brood_speed": 1.3
+  },
+  "unlock": []
+ },
+ "royal_banquet": {
+  "branch": "agriculture",
+  "name": "Royal Banquet",
+  "desc": "A pampered Queen lays more eggs.",
+  "cost": 3,
+  "tier": 4,
+  "requires": [
+   "leafcutter"
+  ],
+  "mult": {
+   "colony.egg_rate": 1.4,
+   "colony.food_cost": 1.1
+  },
+  "unlock": []
+ },
+ "fungus_masters": {
+  "branch": "agriculture",
+  "name": "Fungus Masters",
+  "desc": "Cultivated fungus crowds out wild mould.",
+  "cost": 3,
+  "tier": 4,
+  "requires": [
+   "leafcutter"
+  ],
+  "mult": {
+   "mould.growth": 0.6,
+   "forage.harvest": 1.15
+  },
+  "unlock": []
+ },
+ "clay_masons": {
+  "branch": "architecture",
+  "name": "Clay Masons",
+  "desc": "Walls are packed with wet clay and saliva.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "nest.collapse_chance": 0.6
+  },
+  "unlock": [
+   "behaviour:clay_masons"
+  ]
+ },
+ "strong_diggers": {
+  "branch": "architecture",
+  "name": "Strong Diggers",
+  "desc": "Broader mandibles move more soil per bite.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "ant.dig": 1.3
+  },
+  "unlock": []
+ },
+ "vaulted_ceilings": {
+  "branch": "architecture",
+  "name": "Vaulted Ceilings",
+  "desc": "Arched roofs let chambers span wider.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "clay_masons"
+  ],
+  "mult": {
+   "nest.max_span": 1.5
+  },
+  "unlock": []
+ },
+ "air_shafts": {
+  "branch": "architecture",
+  "name": "Air Shafts",
+  "desc": "Chimney tunnels pull fresh air through the nest.",
+  "cost": 1,
+  "tier": 2,
+  "requires": [
+   "strong_diggers"
+  ],
+  "mult": {
+   "nest.air_use": 0.7
+  },
+  "unlock": []
+ },
+ "drainage": {
+  "branch": "architecture",
+  "name": "Drainage Channels",
+  "desc": "Sloped tunnels lead rain straight to the sump.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "clay_masons"
+  ],
+  "mult": {
+   "env.flood_resist": 1.5
+  },
+  "unlock": []
+ },
+ "thermal_mound": {
+  "branch": "architecture",
+  "name": "Thermal Mound",
+  "desc": "A thatched dome keeps the nest warm in winter and cool in summer.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "air_shafts"
+  ],
+  "mult": {
+   "env.heat_resist": 1.3,
+   "env.cold_resist": 1.3
+  },
+  "unlock": []
+ },
+ "living_bridges": {
+  "branch": "architecture",
+  "name": "Living Bridges",
+  "desc": "Ants link legs to span gaps on the surface.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "vaulted_ceilings"
+  ],
+  "mult": {
+   "ant.grip": 1.2
+  },
+  "unlock": [
+   "behaviour:living_bridges"
+  ]
+ },
+ "deep_shafts": {
+  "branch": "architecture",
+  "name": "Deep Shafts",
+  "desc": "Dig far below the frost line and the water table.",
+  "cost": 3,
+  "tier": 3,
+  "requires": [
+   "drainage",
+   "air_shafts"
+  ],
+  "mult": {
+   "env.cold_resist": 1.2
+  },
+  "unlock": [
+   "behaviour:deep_shafts"
+  ]
+ },
+ "fortress_mound": {
+  "branch": "architecture",
+  "name": "Fortress",
+  "desc": "Reinforced galleries that barely ever cave in.",
+  "cost": 3,
+  "tier": 4,
+  "requires": [
+   "deep_shafts"
+  ],
+  "mult": {
+   "nest.collapse_chance": 0.4,
+   "combat.damage_taken": 0.9
+  },
+  "unlock": []
+ },
+ "minims": {
+  "branch": "swarm",
+  "name": "Minims",
+  "desc": "Tiny workers that are cheap to raise and quick on their feet.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {},
+  "unlock": [
+   "caste:minim"
+  ]
+ },
+ "quick_march": {
+  "branch": "swarm",
+  "name": "Quick March",
+  "desc": "Longer legs, faster foraging.",
+  "cost": 1,
+  "tier": 1,
+  "requires": [],
+  "mult": {
+   "ant.speed": 1.15
+  },
+  "unlock": []
+ },
+ "strong_backs": {
+  "branch": "swarm",
+  "name": "Strong Backs",
+  "desc": "Every worker can carry a little more.",
+  "cost": 1,
+  "tier": 2,
+  "requires": [
+   "quick_march"
+  ],
+  "mult": {
+   "ant.carry": 1.3
+  },
+  "unlock": []
+ },
+ "raft": {
+  "branch": "swarm",
+  "name": "Raft",
+  "desc": "When the nest floods, ants link into a floating raft.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "minims"
+  ],
+  "mult": {
+   "env.flood_resist": 1.4
+  },
+  "unlock": [
+   "behaviour:raft"
+  ]
+ },
+ "long_lives": {
+  "branch": "swarm",
+  "name": "Long Lives",
+  "desc": "Workers live longer and remember more trails.",
+  "cost": 2,
+  "tier": 2,
+  "requires": [
+   "minims"
+  ],
+  "mult": {
+   "ant.lifespan": 1.4
+  },
+  "unlock": []
+ },
+ "wedding_fever": {
+  "branch": "swarm",
+  "name": "Wedding Fever",
+  "desc": "Winged royals fly further and find better mates.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "long_lives"
+  ],
+  "mult": {
+   "flight.success": 1.5
+  },
+  "unlock": []
+ },
+ "army_march": {
+  "branch": "swarm",
+  "name": "Army March",
+  "desc": "Swarm across the yard in a devouring column.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "strong_backs"
+  ],
+  "mult": {
+   "ant.attack": 1.1,
+   "ant.speed": 1.1
+  },
+  "unlock": [
+   "behaviour:army_march"
+  ]
+ },
+ "brood_rush": {
+  "branch": "swarm",
+  "name": "Brood Rush",
+  "desc": "The whole colony pitches in to raise brood.",
+  "cost": 2,
+  "tier": 3,
+  "requires": [
+   "raft"
+  ],
+  "mult": {
+   "colony.brood_speed": 1.25,
+   "colony.egg_rate": 1.15
+  },
+  "unlock": []
+ },
+ "hive_mind": {
+  "branch": "swarm",
+  "name": "Hive Mind",
+  "desc": "Ants sense and share every trail as one creature.",
+  "cost": 3,
+  "tier": 4,
+  "requires": [
+   "army_march",
+   "wedding_fever"
+  ],
+  "mult": {
+   "pheromone.sense_radius": 1.5
+  },
+  "unlock": [
+   "behaviour:hive_mind"
+  ]
+ }
+}

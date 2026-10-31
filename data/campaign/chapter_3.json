@@ -1,0 +1,225 @@
+{
+ "id": "chapter_3",
+ "title": "War of the Gnome",
+ "yard": "yard_02",
+ "next": "chapter_4",
+ "intro": [
+  "The red ants under the garden gnome have been stealing from our trails for days.",
+  "They bite. They spray. They wear their vinegar smell like armour.",
+  "The Queen has made her decision: the gnome will be ours."
+ ],
+ "outro": [
+  "The red queen's chamber lies empty and the gnome stands silent above our new tunnels.",
+  "Antonia has claimed the gnome's hat as a lookout post. She says the view is 'tolerable'.",
+  "The colony is mighty now. But the seasons are turning."
+ ],
+ "unlocks": [
+  "surface",
+  "creatures",
+  "weather",
+  "rival"
+ ],
+ "start": {
+  "workers": 40,
+  "soldiers": 12,
+  "scouts": 4,
+  "nurses": 4,
+  "stores": {
+   "sugar": 120,
+   "protein": 60,
+   "seeds": 10,
+   "water": 60,
+   "fungus": 0
+  },
+  "day": 12,
+  "hour": 7,
+  "season": "summer",
+  "trait_points": 0,
+  "traits": []
+ },
+ "objectives": [
+  {
+   "id": "spiders2",
+   "type": "kills",
+   "params": {
+    "creature": "wolf_spider",
+    "count": 2
+   },
+   "text": "Kill 2 wolf spiders"
+  },
+  {
+   "id": "pop120",
+   "type": "population",
+   "params": {
+    "count": 120
+   },
+   "text": "Grow the colony to 120 ants"
+  },
+  {
+   "id": "soldiers30",
+   "type": "population",
+   "params": {
+    "count": 30,
+    "caste": "soldier"
+   },
+   "text": "Raise an army of 30 soldiers"
+  },
+  {
+   "id": "rival",
+   "type": "rival_destroyed",
+   "params": {},
+   "text": "Destroy the red ant colony under the gnome"
+  }
+ ],
+ "events": [
+  {
+   "at": {
+    "start": true
+   },
+   "type": "hint",
+   "params": {
+    "id": "rival"
+   }
+  },
+  {
+   "at": {
+    "start": true
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "They take our food. They kill our scouts. Today we take the gnome."
+   }
+  },
+  {
+   "at": {
+    "day": 12,
+    "hour": 9
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Red ants. Smell like pickled onions and bad decisions. I've hated them since the larval stage."
+   }
+  },
+  {
+   "at": {
+    "day": 12,
+    "hour": 12
+   },
+   "type": "spawn",
+   "params": {
+    "creature": "wolf_spider",
+    "count": 1,
+    "near": "food"
+   }
+  },
+  {
+   "at": {
+    "day": 13,
+    "hour": 8
+   },
+   "type": "hint",
+   "params": {
+    "id": "overlay"
+   }
+  },
+  {
+   "at": {
+    "day": 13,
+    "hour": 14
+   },
+   "type": "weather",
+   "params": {
+    "kind": "heatwave",
+    "hours": 8
+   }
+  },
+  {
+   "at": {
+    "day": 14,
+    "hour": 6
+   },
+   "type": "spawn",
+   "params": {
+    "creature": "rhino_beetle",
+    "count": 1,
+    "near": "far"
+   }
+  },
+  {
+   "at": {
+    "day": 14,
+    "hour": 7
+   },
+   "type": "hint",
+   "params": {
+    "id": "beetle_mount"
+   }
+  },
+  {
+   "at": {
+    "day": 14,
+    "hour": 8
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "There's a rhinoceros beetle by the compost heap. Big, dim and friendly. My kind of soldier."
+   }
+  },
+  {
+   "at": {
+    "day": 15,
+    "hour": 10
+   },
+   "type": "weather",
+   "params": {
+    "kind": "mower",
+    "hours": 1
+   }
+  },
+  {
+   "at": {
+    "day": 15,
+    "hour": 10
+   },
+   "type": "hint",
+   "params": {
+    "id": "mower"
+   }
+  },
+  {
+   "at": {
+    "day": 16,
+    "hour": 12
+   },
+   "type": "spawn",
+   "params": {
+    "creature": "wolf_spider",
+    "count": 1,
+    "near": "random"
+   }
+  },
+  {
+   "at": {
+    "objective": "spiders2"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "Two spiders fallen. Let every creature in this yard learn our scent."
+   }
+  },
+  {
+   "at": {
+    "objective": "rival"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "The gnome is ours. I'd like it noted that I said this would happen. Repeatedly."
+   }
+  }
+ ]
+}

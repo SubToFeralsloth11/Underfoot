@@ -1,0 +1,28 @@
+{
+  "ticks_per_hour": 180,
+  "hours_per_day": 24,
+  "days_per_season": 7,
+  "order": ["spring", "summer", "autumn", "winter"],
+  "telegraph_seconds": 30,
+  "spring": {
+    "egg_rate": 1.4, "food_spawn_per_hour": 1.2, "temp_day": 20, "temp_night": 9, "surface_open": true,
+    "rival_aggression": 0.6, "upkeep": 1.0, "creature_rate": 0.5,
+    "events": {"rain": {"chance": 0.45, "hours": [2, 6], "intensity": [0.5, 1.0]}, "sprinkler": {"chance": 0.0}, "heatwave": {"chance": 0.0}, "mower": {"chance": 0.15}}
+  },
+  "summer": {
+    "egg_rate": 1.0, "food_spawn_per_hour": 1.0, "temp_day": 31, "temp_night": 17, "surface_open": true,
+    "rival_aggression": 1.0, "upkeep": 1.1, "creature_rate": 0.7,
+    "events": {"rain": {"chance": 0.2, "hours": [1, 3], "intensity": [0.7, 1.0]}, "sprinkler": {"chance": 0.8}, "heatwave": {"chance": 0.35, "hours": [5, 7]}, "mower": {"chance": 0.35}}
+  },
+  "autumn": {
+    "egg_rate": 0.6, "food_spawn_per_hour": 1.5, "temp_day": 16, "temp_night": 6, "surface_open": true,
+    "rival_aggression": 0.8, "upkeep": 1.0, "creature_rate": 0.5,
+    "events": {"rain": {"chance": 0.55, "hours": [3, 8], "intensity": [0.5, 1.0]}, "sprinkler": {"chance": 0.1}, "heatwave": {"chance": 0.0}, "mower": {"chance": 0.2}}
+  },
+  "winter": {
+    "egg_rate": 0.0, "food_spawn_per_hour": 0.0, "temp_day": 4, "temp_night": -3, "surface_open": false,
+    "rival_aggression": 0.0, "upkeep": 0.8, "creature_rate": 0.0,
+    "events": {"rain": {"chance": 0.35, "hours": [4, 10], "intensity": [0.3, 0.7]}, "sprinkler": {"chance": 0.0}, "heatwave": {"chance": 0.0}, "mower": {"chance": 0.0}}
+  },
+  "flight": {"day": 7, "hour": 12, "cost_sugar": 60, "cost_protein": 60, "base_success": 0.5, "satellite_workers": 10}
+}

@@ -1,0 +1,40 @@
+; Engine configuration file.
+config_version=5
+
+[application]
+
+config/name="Underfoot"
+config/description="One ant. One backyard. One day, the whole house."
+config/version="1.0.0"
+run/main_scene="res://ui/menus/MainMenu.tscn"
+config/features=PackedStringArray("4.7", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://autoload/Events.gd"
+Data="*res://autoload/Data.gd"
+Settings="*res://autoload/Settings.gd"
+Clock="*res://autoload/Clock.gd"
+Game="*res://autoload/Game.gd"
+Save="*res://autoload/Save.gd"
+Audio="*res://autoload/Audio.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.08, 0.06, 0.05, 1)

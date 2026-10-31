@@ -1,0 +1,191 @@
+{
+ "id": "chapter_1",
+ "title": "First Burrow",
+ "yard": "yard_01",
+ "next": "chapter_2",
+ "intro": [
+  "The wedding flight is over. The Queen has bitten off her own wings and chosen a patch of dirt under the rhubarb.",
+  "Five loyal workers stand ready. Above them, a whole yard of giants. Below them, nothing but soil and possibility.",
+  "Time to dig."
+ ],
+ "outro": [
+  "The first new ants stumble out of their cocoons, pale and confused.",
+  "Antonia, a scout who claims to be older than the rhubarb, sniffs them and declares them 'adequate'.",
+  "The colony has begun."
+ ],
+ "unlocks": [],
+ "start": {
+  "workers": 5,
+  "soldiers": 0,
+  "scouts": 0,
+  "nurses": 0,
+  "stores": {
+   "sugar": 40,
+   "protein": 20,
+   "seeds": 0,
+   "water": 20,
+   "fungus": 0
+  },
+  "day": 1,
+  "hour": 6,
+  "season": "spring",
+  "trait_points": 0,
+  "traits": []
+ },
+ "objectives": [
+  {
+   "id": "dig3",
+   "type": "chambers",
+   "params": {
+    "count": 3
+   },
+   "text": "Dig and assign 3 chambers"
+  },
+  {
+   "id": "queen_room",
+   "type": "chambers",
+   "params": {
+    "count": 1,
+    "type": "queen"
+   },
+   "text": "Give the Queen a royal chamber"
+  },
+  {
+   "id": "nursery",
+   "type": "chambers",
+   "params": {
+    "count": 1,
+    "type": "nursery"
+   },
+   "text": "Dig a nursery for the brood"
+  },
+  {
+   "id": "hatch5",
+   "type": "hatched",
+   "params": {
+    "count": 5
+   },
+   "text": "Hatch 5 new ants"
+  }
+ ],
+ "events": [
+  {
+   "at": {
+    "start": true
+   },
+   "type": "hint",
+   "params": {
+    "id": "welcome"
+   }
+  },
+  {
+   "at": {
+    "start": true
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "My children, the sun is hot and the birds are hungry. We go down. Now."
+   }
+  },
+  {
+   "at": {
+    "day": 1,
+    "hour": 7
+   },
+   "type": "hint",
+   "params": {
+    "id": "dig"
+   }
+  },
+  {
+   "at": {
+    "day": 1,
+    "hour": 9
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Antonia, senior scout. Yes, there's only five of you. No, that's not my problem. Dig."
+   }
+  },
+  {
+   "at": {
+    "objective": "dig3"
+   },
+   "type": "hint",
+   "params": {
+    "id": "chamber"
+   }
+  },
+  {
+   "at": {
+    "objective": "queen_room"
+   },
+   "type": "hint",
+   "params": {
+    "id": "queen"
+   }
+  },
+  {
+   "at": {
+    "objective": "queen_room"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "A fine chamber. A little damp. I shall lay anyway, because someone has to."
+   }
+  },
+  {
+   "at": {
+    "objective": "nursery"
+   },
+   "type": "hint",
+   "params": {
+    "id": "brood"
+   }
+  },
+  {
+   "at": {
+    "day": 1,
+    "hour": 14
+   },
+   "type": "hint",
+   "params": {
+    "id": "speed"
+   }
+  },
+  {
+   "at": {
+    "day": 2,
+    "hour": 6
+   },
+   "type": "hint",
+   "params": {
+    "id": "inspect"
+   }
+  },
+  {
+   "at": {
+    "day": 2,
+    "hour": 12
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Larvae. All mouth, no manners. Just like me at that age."
+   }
+  },
+  {
+   "at": {
+    "objective": "hatch5"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "Welcome, little ones. You were born for one purpose: everything."
+   }
+  }
+ ]
+}

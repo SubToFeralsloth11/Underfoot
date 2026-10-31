@@ -1,0 +1,7 @@
+{
+  "vent":   {"name": "Vent Shaft",    "layer": "nest",    "cost": {},                            "desc": "Marks a straight shaft up to the surface for fresh air."},
+  "sump":   {"name": "Drainage Sump", "layer": "nest",    "cost": {"seeds": 5},                  "desc": "Paints a small sump chamber that drains water."},
+  "seal":   {"name": "Clay Seal",     "layer": "nest",    "cost": {"sugar": 4},                  "desc": "A door: ants pass, water and air do not.", "cheaper_with": "behaviour:clay_masons"},
+  "pillar": {"name": "Support Pillar","layer": "nest",    "cost": {"sugar": 2},                  "desc": "Fills an open cell with packed soil that stops collapses."},
+  "thatch": {"name": "Thatch Dome",   "layer": "surface", "cost": {"seeds": 30, "leaf": 0},      "desc": "Insulates the entrance and keeps rain out."}
+}

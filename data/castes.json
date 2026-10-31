@@ -1,0 +1,33 @@
+{
+  "worker":  {"index": 0, "hp": 10, "speed": 1.0, "carry": 1, "dig": 1.0, "attack": 1, "food_cost": 1, "sense": 1.0, "grip": 1.0, "nurse": 0.5, "lifespan_days": 60, "size": 5.0, "diet": 0.35, "feeds": 4, "wander": 0.35, "color": "#2a1a12", "producible": true, "unlock": ""},
+  "soldier": {"index": 1, "hp": 30, "speed": 0.8, "carry": 1, "dig": 0.3, "attack": 6, "food_cost": 3, "sense": 1.0, "grip": 3.0, "nurse": 0.0, "lifespan_days": 50, "size": 7.0, "diet": 0.85, "feeds": 6, "wander": 0.25, "color": "#5a1e10", "producible": true, "unlock": ""},
+  "scout":   {"index": 2, "hp": 6,  "speed": 1.6, "carry": 0, "dig": 0.0, "attack": 1, "food_cost": 1, "sense": 2.0, "grip": 0.8, "nurse": 0.0, "lifespan_days": 40, "size": 4.5, "diet": 0.1,  "feeds": 4, "wander": 0.7, "color": "#3a3020", "producible": true, "unlock": ""},
+  "nurse":   {"index": 3, "hp": 8,  "speed": 0.9, "carry": 1, "dig": 0.2, "attack": 0, "food_cost": 1, "sense": 1.0, "grip": 0.8, "nurse": 1.0, "lifespan_days": 70, "size": 4.5, "diet": 0.6,  "feeds": 4, "wander": 0.3, "color": "#4a3628", "producible": true, "unlock": ""},
+  "major":   {"index": 4, "hp": 60, "speed": 0.7, "carry": 4, "dig": 1.5, "attack": 12, "food_cost": 5, "sense": 1.0, "grip": 4.0, "nurse": 0.0, "lifespan_days": 45, "size": 9.0, "diet": 1.0,  "feeds": 9, "wander": 0.2, "color": "#3d140a", "producible": true, "unlock": "caste:major"},
+  "minim":   {"index": 5, "hp": 4,  "speed": 1.2, "carry": 0.5, "dig": 0.6, "attack": 0.5, "food_cost": 0.4, "sense": 1.2, "grip": 0.6, "nurse": 0.8, "lifespan_days": 35, "size": 3.0, "diet": 0.2, "feeds": 2, "wander": 0.4, "color": "#2e2418", "producible": true, "unlock": "caste:minim"},
+  "queen":   {"index": 6, "hp": 50, "speed": 0.3, "carry": 0, "dig": 0.0, "attack": 2, "food_cost": 4, "sense": 1.0, "grip": 2.0, "nurse": 0.4, "lifespan_days": 100000, "size": 12.0, "diet": 1.0, "feeds": 12, "wander": 0.0, "color": "#6a2a12", "producible": false, "unlock": ""},
+  "royal":   {"index": 7, "hp": 15, "speed": 1.4, "carry": 0, "dig": 0.0, "attack": 1, "food_cost": 2, "sense": 1.0, "grip": 1.0, "nurse": 0.0, "lifespan_days": 30, "size": 9.0, "diet": 1.0, "feeds": 10, "wander": 0.1, "color": "#7a3a1a", "producible": false, "unlock": ""},
+  "_ants": {
+    "base_speed": 45.0,
+    "sense_dist": 22.0,
+    "sense_angle": 0.6,
+    "turn_rate": 4.0,
+    "wander_noise": 1.6,
+    "deposit_interval": 3,
+    "home_deposit": 1.0,
+    "food_deposit": 6.0,
+    "explore_deposit": 1.0,
+    "alarm_deposit": 25.0,
+    "trail_fade_seconds": 90.0,
+    "homing_weight": 0.9,
+    "player_weight": 3.0,
+    "alarm_avoid": 4.0,
+    "forage_give_up_seconds": 150.0,
+    "separation": 0.6,
+    "nest_speed_mult": 0.6,
+    "pickup_seconds": 0.6,
+    "max_ants": 12000,
+    "ants_per_nurse": 4,
+    "trail_busy_count": 14
+  }
+}

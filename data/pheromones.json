@@ -1,0 +1,11 @@
+{
+  "channels": ["FOOD", "HOME", "ALARM", "EXPLORE", "PLAYER"],
+  "decay_per_second": {"FOOD": 0.0154, "HOME": 0.0099, "ALARM": 0.115, "EXPLORE": 0.0077, "PLAYER": 0.0017},
+  "max_value": 255.0,
+  "diffuse": 0.18,
+  "rain_decay_mult": 40.0,
+  "surface_cell_mm": 25.0,
+  "nest_cell_mm": 8.0,
+  "house_cell_mm": 25.0,
+  "brush": {"radius_mm": 60.0, "strength": 220.0, "erase_radius_mm": 90.0}
+}

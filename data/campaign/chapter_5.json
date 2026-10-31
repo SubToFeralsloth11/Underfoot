@@ -1,0 +1,233 @@
+{
+ "id": "chapter_5",
+ "title": "Indoors",
+ "yard": "house_01",
+ "next": "",
+ "intro": [
+  "The back door was open for exactly four minutes. That was enough.",
+  "Inside lies a world of tiles and carpet, a kitchen of endless crumbs, and a sugar bowl like a mountain of snow.",
+  "Also a cat. And a homeowner. And, if we are careless, a man with a van."
+ ],
+ "outro": [
+  "The van pulls away. The homeowner shrugs and leaves the biscuit tin open again.",
+  "Under the kitchen floor, a vast colony hums with life, fed on sugar and stubbornness.",
+  "Antonia, very old now, sits at the edge of the sugar bowl. 'Not bad,' she says. 'Not bad at all.'"
+ ],
+ "unlocks": [
+  "surface",
+  "creatures",
+  "weather",
+  "rival",
+  "seasons",
+  "evolution",
+  "satellites",
+  "house"
+ ],
+ "start": {
+  "workers": 100,
+  "soldiers": 25,
+  "scouts": 12,
+  "nurses": 13,
+  "stores": {
+   "sugar": 200,
+   "protein": 120,
+   "seeds": 80,
+   "water": 100,
+   "fungus": 20
+  },
+  "day": 1,
+  "hour": 7,
+  "season": "summer",
+  "trait_points": 4,
+  "traits": [
+   "long_scent",
+   "aphid_ranching",
+   "clay_masons",
+   "trap_jaw"
+  ]
+ },
+ "objectives": [
+  {
+   "id": "house",
+   "type": "reach_house",
+   "params": {},
+   "text": "Find a way into the House"
+  },
+  {
+   "id": "crumbs400",
+   "type": "harvested",
+   "params": {
+    "resource": "sugar",
+    "amount": 400
+   },
+   "text": "Harvest 400 sugar from the kitchen crumbs"
+  },
+  {
+   "id": "pop200",
+   "type": "population",
+   "params": {
+    "count": 200
+   },
+   "text": "Grow the colony to 200 ants"
+  },
+  {
+   "id": "exterminator",
+   "type": "exterminator_defeated",
+   "params": {},
+   "text": "Outlast the exterminator"
+  }
+ ],
+ "events": [
+  {
+   "at": {
+    "start": true
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "The giants' nest. Warm, dry and full of sugar. We go in quietly."
+   }
+  },
+  {
+   "at": {
+    "start": true
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Quietly. Right. Two hundred of us. In a straight line. Across a white kitchen floor."
+   }
+  },
+  {
+   "at": {
+    "objective": "house"
+   },
+   "type": "hint",
+   "params": {
+    "id": "house"
+   }
+  },
+  {
+   "at": {
+    "objective": "house"
+   },
+   "type": "food",
+   "params": {
+    "food": "crumb_pile",
+    "count": 4,
+    "near": "random"
+   }
+  },
+  {
+   "at": {
+    "objective": "house"
+   },
+   "type": "food",
+   "params": {
+    "food": "sugar_cube",
+    "count": 2,
+    "near": "far"
+   }
+  },
+  {
+   "at": {
+    "day": 2,
+    "hour": 8
+   },
+   "type": "escalation",
+   "params": {
+    "level": 1
+   }
+  },
+  {
+   "at": {
+    "day": 2,
+    "hour": 9
+   },
+   "type": "hint",
+   "params": {
+    "id": "escalation"
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 8
+   },
+   "type": "escalation",
+   "params": {
+    "level": 2
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 12
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "The cat's watching the skirting board. Don't make eye contact. We don't have eyes worth mentioning, but still."
+   }
+  },
+  {
+   "at": {
+    "day": 6,
+    "hour": 8
+   },
+   "type": "escalation",
+   "params": {
+    "level": 3
+   }
+  },
+  {
+   "at": {
+    "objective": "crumbs400"
+   },
+   "type": "escalation",
+   "params": {
+    "level": 4
+   }
+  },
+  {
+   "at": {
+    "objective": "crumbs400"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "They know we are here. Let them come. This is our home now."
+   }
+  },
+  {
+   "at": {
+    "day": 8,
+    "hour": 9
+   },
+   "type": "escalation",
+   "params": {
+    "level": 5
+   }
+  },
+  {
+   "at": {
+    "day": 8,
+    "hour": 10
+   },
+   "type": "hint",
+   "params": {
+    "id": "exterminator"
+   }
+  },
+  {
+   "at": {
+    "objective": "exterminator"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "He's gone. Packed his little sprayer and left. Somebody remind me to bite something in celebration."
+   }
+  }
+ ]
+}

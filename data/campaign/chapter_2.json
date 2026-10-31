@@ -1,0 +1,238 @@
+{
+ "id": "chapter_2",
+ "title": "The Lawn",
+ "yard": "yard_01",
+ "next": "chapter_3",
+ "intro": [
+  "Twenty workers strong, the colony pokes its antennae into the sunlight for the first time.",
+  "The lawn stretches out like a green forest. Somewhere out there is sugar. Somewhere out there are spiders.",
+  "Antonia has volunteered to lead the way, mostly so she can complain about it."
+ ],
+ "outro": [
+  "The stores are full, the brood chambers are bursting, and the beetle has been eaten down to the shell.",
+  "Antonia insists she found it. Nobody argues.",
+  "But from beneath the garden gnome comes a sharp, vinegary smell. We are not alone."
+ ],
+ "unlocks": [
+  "surface",
+  "creatures",
+  "weather"
+ ],
+ "start": {
+  "workers": 20,
+  "soldiers": 2,
+  "scouts": 2,
+  "nurses": 3,
+  "stores": {
+   "sugar": 60,
+   "protein": 30,
+   "seeds": 0,
+   "water": 40,
+   "fungus": 0
+  },
+  "day": 4,
+  "hour": 7,
+  "season": "spring",
+  "trait_points": 0,
+  "traits": []
+ },
+ "objectives": [
+  {
+   "id": "sugar150",
+   "type": "harvested",
+   "params": {
+    "resource": "sugar",
+    "amount": 150
+   },
+   "text": "Harvest 150 sugar"
+  },
+  {
+   "id": "protein60",
+   "type": "harvested",
+   "params": {
+    "resource": "protein",
+    "amount": 60
+   },
+   "text": "Harvest 60 protein (that dead beetle won't drag itself)"
+  },
+  {
+   "id": "pop40",
+   "type": "population",
+   "params": {
+    "count": 40
+   },
+   "text": "Grow the colony to 40 ants"
+  },
+  {
+   "id": "spider1",
+   "type": "kills",
+   "params": {
+    "creature": "wolf_spider",
+    "count": 1
+   },
+   "text": "Deal with the wolf spider"
+  }
+ ],
+ "events": [
+  {
+   "at": {
+    "start": true
+   },
+   "type": "hint",
+   "params": {
+    "id": "surface"
+   }
+  },
+  {
+   "at": {
+    "start": true
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "That's the sky. Don't look at it too long, things fall out of it with beaks."
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 8
+   },
+   "type": "hint",
+   "params": {
+    "id": "trail"
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 9
+   },
+   "type": "food",
+   "params": {
+    "food": "crumb_pile",
+    "count": 2,
+    "near": "random"
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 10
+   },
+   "type": "food",
+   "params": {
+    "food": "berry",
+    "count": 1,
+    "near": "far"
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 11
+   },
+   "type": "hint",
+   "params": {
+    "id": "erase"
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 13
+   },
+   "type": "spawn",
+   "params": {
+    "creature": "dead_beetle",
+    "count": 1,
+    "near": "far"
+   }
+  },
+  {
+   "at": {
+    "day": 4,
+    "hour": 14
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Dead beetle by the birdbath! I saw it first. Bring twenty friends and a strong back."
+   }
+  },
+  {
+   "at": {
+    "day": 5,
+    "hour": 6
+   },
+   "type": "hint",
+   "params": {
+    "id": "castes"
+   }
+  },
+  {
+   "at": {
+    "day": 5,
+    "hour": 15
+   },
+   "type": "weather",
+   "params": {
+    "kind": "rain",
+    "hours": 4
+   }
+  },
+  {
+   "at": {
+    "day": 6,
+    "hour": 9
+   },
+   "type": "spawn",
+   "params": {
+    "creature": "wolf_spider",
+    "count": 1,
+    "near": "food"
+   }
+  },
+  {
+   "at": {
+    "day": 6,
+    "hour": 9
+   },
+   "type": "hint",
+   "params": {
+    "id": "spider"
+   }
+  },
+  {
+   "at": {
+    "day": 6,
+    "hour": 10
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "A spider guards our food. Send the soldiers together, and send them now."
+   }
+  },
+  {
+   "at": {
+    "objective": "protein60"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "Protein for the larvae. They will grow strong on beetle."
+   }
+  },
+  {
+   "at": {
+    "objective": "pop40"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Forty of us. Forty! Back in my day there were five and we liked it."
+   }
+  }
+ ]
+}

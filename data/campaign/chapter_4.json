@@ -1,0 +1,238 @@
+{
+ "id": "chapter_4",
+ "title": "Year One",
+ "yard": "yard_02",
+ "next": "chapter_5",
+ "intro": [
+  "Spring again, and the colony has outgrown its first year.",
+  "The Queen speaks of winged daughters and new kingdoms across the yard.",
+  "Antonia speaks of winter, and of how none of the youngsters are ready for it."
+ ],
+ "outro": [
+  "The snow has melted. Satellite nests dot the yard, linked by scent trails like silver threads.",
+  "The colony has changed too: stronger, stranger, better suited to its little world.",
+  "And through the back door, left open on a warm day, comes the smell of sugar. Real sugar."
+ ],
+ "unlocks": [
+  "surface",
+  "creatures",
+  "weather",
+  "rival",
+  "seasons",
+  "evolution",
+  "satellites"
+ ],
+ "start": {
+  "workers": 55,
+  "soldiers": 12,
+  "scouts": 6,
+  "nurses": 7,
+  "stores": {
+   "sugar": 150,
+   "protein": 80,
+   "seeds": 40,
+   "water": 80,
+   "fungus": 0
+  },
+  "day": 1,
+  "hour": 6,
+  "season": "spring",
+  "trait_points": 0,
+  "traits": []
+ },
+ "objectives": [
+  {
+   "id": "flight",
+   "type": "flight",
+   "params": {},
+   "text": "Complete a nuptial flight"
+  },
+  {
+   "id": "traits3",
+   "type": "traits",
+   "params": {
+    "count": 3
+   },
+   "text": "Evolve 3 traits"
+  },
+  {
+   "id": "satellite1",
+   "type": "satellites",
+   "params": {
+    "count": 1
+   },
+   "text": "Found a satellite nest"
+  },
+  {
+   "id": "seeds100",
+   "type": "stores",
+   "params": {
+    "resource": "seeds",
+    "amount": 100
+   },
+   "text": "Store 100 seeds for winter"
+  },
+  {
+   "id": "winter",
+   "type": "survive_season",
+   "params": {
+    "season": "winter"
+   },
+   "text": "Survive the winter"
+  }
+ ],
+ "events": [
+  {
+   "at": {
+    "start": true
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "This spring my daughters will grow wings. Feed them well; they carry our future."
+   }
+  },
+  {
+   "at": {
+    "day": 1,
+    "hour": 8
+   },
+   "type": "hint",
+   "params": {
+    "id": "flight"
+   }
+  },
+  {
+   "at": {
+    "day": 2,
+    "hour": 9
+   },
+   "type": "food",
+   "params": {
+    "food": "seed_head",
+    "count": 3,
+    "near": "random"
+   }
+  },
+  {
+   "at": {
+    "day": 3,
+    "hour": 14
+   },
+   "type": "weather",
+   "params": {
+    "kind": "sprinkler",
+    "hours": 2
+   }
+  },
+  {
+   "at": {
+    "objective": "flight"
+   },
+   "type": "trait_points",
+   "params": {
+    "amount": 2
+   }
+  },
+  {
+   "at": {
+    "objective": "flight"
+   },
+   "type": "hint",
+   "params": {
+    "id": "traits"
+   }
+  },
+  {
+   "at": {
+    "objective": "flight"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "They flew off into the sky and most of them got eaten. The ones that didn't are now very important. Typical."
+   }
+  },
+  {
+   "at": {
+    "objective": "satellite1"
+   },
+   "type": "hint",
+   "params": {
+    "id": "satellite"
+   }
+  },
+  {
+   "at": {
+    "objective": "traits3"
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Queen",
+    "text": "We are not the colony we were. We are better."
+   }
+  },
+  {
+   "at": {
+    "day": 20,
+    "hour": 6
+   },
+   "type": "season",
+   "params": {
+    "season": "summer"
+   }
+  },
+  {
+   "at": {
+    "day": 30,
+    "hour": 10
+   },
+   "type": "weather",
+   "params": {
+    "kind": "rain",
+    "hours": 12
+   }
+  },
+  {
+   "at": {
+    "day": 40,
+    "hour": 6
+   },
+   "type": "season",
+   "params": {
+    "season": "autumn"
+   }
+  },
+  {
+   "at": {
+    "day": 42,
+    "hour": 9
+   },
+   "type": "dialog",
+   "params": {
+    "speaker": "Antonia",
+    "text": "Leaves are falling. Fill the granary or we'll be eating each other by midwinter. I'm joking. Mostly."
+   }
+  },
+  {
+   "at": {
+    "day": 55,
+    "hour": 6
+   },
+   "type": "season",
+   "params": {
+    "season": "winter"
+   }
+  },
+  {
+   "at": {
+    "day": 55,
+    "hour": 7
+   },
+   "type": "hint",
+   "params": {
+    "id": "winter"
+   }
+  }
+ ]
+}
