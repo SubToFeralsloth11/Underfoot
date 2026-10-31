@@ -53,7 +53,6 @@ func _ready() -> void:
 	layer.add_child(hud)
 	Events.game_over.connect(func(won, reason): hud.show_game_over(won, reason))
 	Events.chapter_completed.connect(func(_id): hud.show_chapter_complete(w.campaign.chapter))
-	Events.collapse.connect(func(_s, _p, _c): pass)
 	var start_view := "nest" if not w.flags.get("surface", false) or w.mode == "campaign" and w.chapter_id == "chapter_1" else "surface"
 	set_view(start_view)
 	if w.campaign.active():

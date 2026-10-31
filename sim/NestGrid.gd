@@ -65,6 +65,12 @@ func soil_id_index(id: String) -> int:
 	return _soil_idx.get(id, 2)
 
 
+## Change the soil of a cell (scenario setup and tests).
+func set_soil(c: int, soil_name: String) -> void:
+	soil_type[c] = soil_id_index(soil_name)
+	mark_dirty(c)
+
+
 func _alloc(width: int, height: int) -> void:
 	w = width
 	h = height
@@ -743,7 +749,7 @@ func serialize() -> Dictionary:
 		"mould": mould, "chamber_id": chamber_id, "dig_mark": dig_mark, "build": build,
 		"temperature": temperature, "room": room, "room_names": room_names,
 		"chambers": ch_out, "entrance_x": entrance_x, "entrance_cells": entrance_cells,
-		"mound": mound, "thatch": thatch, "owner": owner, "surface_pos": surface_pos,
+		"mound": mound, "thatch": thatch, "owner": owner, "surface_pos": surface_pos, "open_list": open_list,
 	}
 
 
@@ -778,6 +784,8 @@ func deserialize(d: Dictionary) -> void:
 	for ch in d["chambers"]:
 		chambers.append({"type": ch["type"], "cells": ch["cells"], "open": 0, "center": Vector2.ZERO, "ok": false, "corpses": ch["corpses"]})
 	rebuild_open_list()
+	if d.has("open_list") and d["open_list"].size() == open_list.size():
+		open_list = d["open_list"]  # keep dig order: the environment sweeps cells in this order
 	for i in chambers.size():
 		_recount_chamber(i)
 	fields.clear()

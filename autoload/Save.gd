@@ -28,7 +28,8 @@ func snapshot() -> Dictionary:
 		"version": VERSION,
 		"clock": {"tick": Clock.tick, "offset": Clock.offset_ticks},
 		"meta": {"label": Clock.label(), "mode": Game.world.mode, "population": Game.world.colony_population(), "saved": Time.get_datetime_string_from_system()},
-		"world": Game.world.serialize(),
+		# Deep copy: serialize() hands out the world's live dictionaries (brood, foods, creatures...).
+		"world": Game.world.serialize().duplicate(true),
 	}
 
 
@@ -58,7 +59,7 @@ func read_slot(slot: String) -> Dictionary:
 
 ## Restore a snapshot into a fresh World and the Clock. Returns the world.
 func restore(d: Dictionary) -> World:
-	d = migrate(d)
+	d = migrate(d.duplicate(true))  # never share containers between the snapshot and the new world
 	if d.is_empty():
 		return null
 	Clock.tick = int(d["clock"]["tick"])

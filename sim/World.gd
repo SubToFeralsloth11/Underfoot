@@ -211,6 +211,8 @@ func step(dt: float) -> void:
 	if over:
 		return
 	weather.step(dt)
+	if Clock.tick % 20 == 0:
+		_apply_scent_traits()
 	for p in pher:
 		p.advance(dt)
 	ants.step(dt)
@@ -291,6 +293,24 @@ func on_season(s: String) -> void:
 			if col.faction == 0 and flags.get("evolution", false):
 				col.trait_points += 1
 		Events.toast.emit("A new year begins. +1 trait point.")
+
+
+## Trail scents decay at the owning faction's trait rate (e.g. Long Scent halves it).
+func _apply_scent_traits() -> void:
+	var pcfg := Data.table("pheromones")
+	var dec: Dictionary = pcfg.get("decay_per_second", {})
+	var names: Array = pcfg.get("channels", ["FOOD", "HOME", "ALARM", "EXPLORE", "PLAYER"])
+	for f in 2:
+		var m := 1.0
+		for col in colonies:
+			if col.faction == f:
+				m = col.mult("pheromone.decay")
+				break
+		for p in pher:
+			if (f + 1) * PheromoneField.PER_FACTION > p.channels:
+				continue
+			for kind in [PheromoneField.FOOD, PheromoneField.HOME, PheromoneField.EXPLORE, PheromoneField.PLAYER]:
+				p.set_decay_mult(PheromoneField.ch(f, kind), float(dec.get(names[kind], 0.01)), m)
 
 
 # ---------------------------------------------------------------- hauling
@@ -971,7 +991,7 @@ func serialize() -> Dictionary:
 		"house": house.serialize() if house else {}, "house_ai": house_ai.serialize() if house_ai else {},
 		"ants": ants.serialize(), "creatures": creatures.serialize(), "weather": weather.serialize(),
 		"campaign": campaign.serialize(), "rally": rally, "stats": stats, "field_guide": field_guide,
-		"queen_relocating": queen_relocating,
+		"queen_relocating": queen_relocating, "env_cursor": env.cursor_state(), "haul_power": haul_power,
 	}
 
 
@@ -1015,6 +1035,7 @@ func deserialize(d: Dictionary) -> void:
 	weather = Weather.new(self)
 	weather.deserialize(d["weather"])
 	env = NestEnvironment.new()
+	env.set_cursor_state(d.get("env_cursor", {}))
 	if not d["house"].is_empty():
 		house = NestGrid.new()
 		house.deserialize(d["house"])
@@ -1028,6 +1049,7 @@ func deserialize(d: Dictionary) -> void:
 	stats = d["stats"]
 	field_guide = d["field_guide"]
 	queen_relocating = d["queen_relocating"]
+	haul_power = d.get("haul_power", {})
 
 
 ## SHA-256 over the full serialized state (save round-trip + determinism tests).

@@ -330,7 +330,7 @@ func _win_exterminator(msg: String) -> void:
 
 func serialize() -> Dictionary:
 	var out := {}
-	for k in ["meter", "level", "max_level", "person_room", "person_pos", "cat_pos", "cat_goal", "sprays", "baits_placed", "last_wipe_hour",
+	for k in ["meter", "level", "max_level", "person_room", "person_pos", "cat_pos", "cat_goal", "cat_swat", "sprays", "baits_placed", "last_wipe_hour",
 			"ext_phase", "ext_timer", "ext_pos", "ext_heading", "ext_fog_room", "ext_dig_depth", "ext_dig_x", "ext_defeated", "ext_started", "queen_relocating", "relocate_target"]:
 		out[k] = get(k)
 	return out

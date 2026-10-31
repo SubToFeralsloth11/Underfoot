@@ -213,7 +213,7 @@ func upcoming() -> Array:
 
 
 func serialize() -> Dictionary:
-	return {"events": events, "mower_x": mower_x}
+	return {"events": events, "mower_x": mower_x, "erase_timer": _erase_timer}
 
 
 func deserialize(d: Dictionary) -> void:
@@ -221,3 +221,4 @@ func deserialize(d: Dictionary) -> void:
 	for e in d["events"]:
 		events.append(e)
 	mower_x = d["mower_x"]
+	_erase_timer = d.get("erase_timer", 0.0)

@@ -17,6 +17,15 @@ func _init() -> void:
 	divisor = int(cfg.get("update_divisor", 4))
 
 
+## Amortization cursors (saved so a loaded game updates the same cells next tick).
+func cursor_state() -> Dictionary:
+	return _cursor.duplicate()
+
+
+func set_cursor_state(d: Dictionary) -> void:
+	_cursor = d.duplicate()
+
+
 ## surface_temp in degrees C; rain 0..1; colony for trait multipliers.
 func step(grid: NestGrid, key: int, surface_temp: float, rain: float, colony) -> void:
 	var list := grid.open_list

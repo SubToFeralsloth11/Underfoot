@@ -73,7 +73,7 @@ func _draw_extra(t: float) -> void:
 	# Chamber labels.
 	var cdefs := Data.table("chambers")
 	var font := ThemeDB.fallback_font
-	var fs := int(clampf(10.0 / zoom * 1.2, 4.0, 40.0))
+	var fs := 13
 	for i in g.chambers.size():
 		var ch: Dictionary = g.chambers[i]
 		if ch["type"] == "none" or ch["cells"].is_empty():
@@ -83,7 +83,11 @@ func _draw_extra(t: float) -> void:
 		var label: String = def.get("name", ch["type"])
 		if not ch["ok"]:
 			label += " (%d/%d)" % [ch["open"], def.get("min_cells", 0)]
-		dyn.draw_string(font, c + Vector2(-label.length() * fs * 0.27, -2), label, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(1, 1, 1, 0.75))
+		dyn.draw_set_transform(c, 0.0, Vector2.ONE / zoom)
+		var tw := font.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+		dyn.draw_string_outline(font, Vector2(-tw * 0.5, 4), label, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, 4, Color(0, 0, 0, 0.6))
+		dyn.draw_string(font, Vector2(-tw * 0.5, 4), label, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(1, 1, 1, 0.85))
+		dyn.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 	# Brood.
 	if g.owner >= 0 and g.owner < w.colonies.size():
 		var col: Colony = w.colonies[g.owner]

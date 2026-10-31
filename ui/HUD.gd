@@ -126,6 +126,13 @@ func _build_top() -> void:
 		b.toggle_mode = true
 		h.add_child(b)
 		view_buttons[v] = b
+	var nn := UITheme.button("Next nest", func():
+		var ev := InputEventKey.new()
+		ev.physical_keycode = Settings.keys["next_nest"]
+		ev.pressed = true
+		main._on_key(ev), "Cycle your nests (N)")
+	nn.name = "NextNest"
+	h.add_child(nn)
 	h.add_child(UITheme.button("Menu", func(): main.open_pause(), "Esc"))
 
 
@@ -336,6 +343,9 @@ func refresh() -> void:
 		points_label.text += "  Charters %d" % col.charters
 	esc_label.text = ("House alert %d/5" % w.house_ai.level) if w.house_ai and w.house_ai.level > 0 else ""
 	view_buttons["house"].visible = w.house != null
+	var nnb := find_child("NextNest", true, false)
+	if nnb:
+		nnb.visible = w.player_colonies().size() > 1
 	for v in view_buttons.keys():
 		view_buttons[v].button_pressed = main.view == v
 	for t in tool_buttons.keys():

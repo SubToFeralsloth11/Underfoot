@@ -27,6 +27,8 @@ var clock := 0.0
 var rate_mult := 1.0
 var max_value := 255.0
 var diffuse := 0.18
+## Best score seen by the last steer() call (<= 0.02 means no scent nearby).
+var last_best := 0.0
 
 
 func _init(width_mm: float = 0.0, height_mm: float = 0.0, cell_mm: float = 25.0, factions: int = 1) -> void:
@@ -110,7 +112,13 @@ func deposit(x: float, y: float, channel: int, amount: float) -> void:
 	var iy := int(y * inv_cell)
 	if ix < 0 or iy < 0 or ix >= w or iy >= h:
 		return
-	_add(channel * cells + iy * w + ix, channel, amount)
+	# _add inlined: this runs for every depositing ant every few ticks.
+	var i := channel * cells + iy * w + ix
+	var v := val[i]
+	if v != 0.0:
+		v *= exp(-k[channel] * (clock - stamp[i]))
+	val[i] = clampf(v + amount, 0.0, max_value)
+	stamp[i] = clock
 
 
 ## Deposit with diffusion to the 4 neighbours.
@@ -198,6 +206,7 @@ func steer(p: Vector2, hd: float, sd: float, sa: float, ch_a: int, ch_b: int, wb
 		if s > best:
 			best = s
 			best_dir = j - 1
+	last_best = best
 	return best_dir
 
 

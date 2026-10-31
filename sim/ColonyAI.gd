@@ -49,8 +49,8 @@ static func on_hour(world, col: Colony) -> void:
 	col.egg_rate = 1.2 * float(world.diff.get("rival_growth", 1.0)) * world.year_ramp()
 	col.caste_targets = {"worker": 0.6, "soldier": 0.3 + 0.1 * aggression, "scout": 0.1, "nurse": 0.12}
 	# Keep the rival fed enough to grow: it forages with the same rules, plus a trickle.
-	col.add_store("sugar", 1.5 * float(world.diff.get("rival_growth", 1.0)), world.nests[col.nest])
-	col.add_store("protein", 0.8 * float(world.diff.get("rival_growth", 1.0)), world.nests[col.nest])
+	col.add_store("sugar", 2.2 * float(world.diff.get("rival_growth", 1.0)), world.nests[col.nest])
+	col.add_store("protein", 1.2 * float(world.diff.get("rival_growth", 1.0)), world.nests[col.nest])
 	var r: Dictionary = world.rally[col.faction]
 	if r["active"]:
 		return
@@ -60,7 +60,11 @@ static func on_hour(world, col: Colony) -> void:
 	if aggression > 0.0 and soldiers >= 6 and days_since >= interval and world.flags.get("rival", false):
 		var target_nest: int = world.weakest_player_nest()
 		if target_nest >= 0:
-			world.set_rally(col.faction, world.nests[target_nest].surface_pos, 4.0)
+			# The rally must outlast the march across the yard (soldiers on grass), then linger 4 h.
+			var target_pos: Vector2 = world.nests[target_nest].surface_pos
+			var speed: float = col.c_speed[col.caste_index("soldier")] * SurfaceWorld.GROUND_SPEED[SurfaceWorld.G_GRASS]
+			var march_hours: float = world.nests[col.nest].surface_pos.distance_to(target_pos) / maxf(speed, 1.0) / (Clock.ticks_per_hour * Clock.DT)
+			world.set_rally(col.faction, target_pos, march_hours + 4.0)
 			r["last"] = Clock.tick
 			Events.alert.emit("raid", "Red ants are marching on your nest! (%d soldiers)" % soldiers, world.nests[target_nest].surface_pos, AntSim.SPACE_SURFACE)
 			Events.hint.emit("rival")

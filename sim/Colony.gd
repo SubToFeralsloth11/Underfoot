@@ -167,6 +167,11 @@ func food_total() -> float:
 	return stores["sugar"] + stores["protein"] + stores["seeds"] + stores["fungus"] + stores["leaf"]
 
 
+## Stores the ants can actually eat (leaves only feed the fungus garden).
+func edible_total() -> float:
+	return stores["sugar"] + stores["protein"] + stores["seeds"] + stores["fungus"]
+
+
 func capacity(grid: NestGrid) -> float:
 	var cells := grid.chamber_cells_of_type("food_store") if grid else 0
 	var fungus := grid.chamber_cells_of_type("fungus") if grid else 0
@@ -293,8 +298,8 @@ func on_hour(grid: NestGrid, season: Dictionary, flags: Dictionary, rng: RandomN
 	# Queen lays.
 	if queen_alive and brood.size() < brood_capacity(grid):
 		var rate := egg_rate * float(season.get("egg_rate", 1.0)) * mult("colony.egg_rate")
-		if food_total() < 2.0:
-			rate = 0.0
+		if edible_total() < 2.0 or edible_total() < _food_reserve():
+			rate = 0.0  # hold eggs back until the brood already laid and the adults can be fed
 		egg_acc += rate
 		while egg_acc >= 1.0:
 			egg_acc -= 1.0
@@ -316,11 +321,23 @@ func on_hour(grid: NestGrid, season: Dictionary, flags: Dictionary, rng: RandomN
 	for b in brood:
 		if b["stage"] == STAGE_LARVA:
 			larvae.append(b)
-	larvae.sort_custom(func(a, b): return a["hunger"] > b["hunger"])
+	# Larvae close to starving first, then the best-fed ones so they finish growing
+	# (spreading every feed thinly stalls the whole brood pipeline).
+	larvae.sort_custom(func(a, b):
+		var ua: bool = a["hunger"] >= LARVA_STARVE * 0.5
+		var ub: bool = b["hunger"] >= LARVA_STARVE * 0.5
+		if ua != ub:
+			return ua
+		if ua:
+			return a["hunger"] > b["hunger"]
+		return a["fed"] > b["fed"])
 	var fed_budget := int(floor(feeds * 2.0))
+	var adult_need := _adult_upkeep()
 	for b in larvae:
-		if fed_budget <= 0:
-			break
+		if fed_budget <= 0 or edible_total() - 1.0 < adult_need:
+			break  # the adults' next meal comes first; larvae only get the surplus
+		if int(b["fed"]) >= int(caste_defs[caste_index(b["caste"])]["feeds"]) and b["hunger"] < LARVA_STARVE * 0.5:
+			continue  # fully fed, just growing: only top up when it gets hungry
 		if _feed(b, rng):
 			fed_budget -= 1
 	# Develop.
@@ -423,6 +440,27 @@ func _feed(b: Dictionary, rng: RandomNumberGenerator) -> bool:
 
 func _die_brood(cause: String) -> void:
 	deaths["brood_" + cause] = deaths.get("brood_" + cause, 0) + 1
+
+
+## Food the adults (and queen) eat in one day, before season/difficulty multipliers.
+func _adult_upkeep() -> float:
+	var need := 0.0
+	for i in counts.size():
+		need += counts[i] * c_food[i]
+	return need
+
+
+## Food the queen keeps in reserve before laying: one day of adult upkeep plus the
+## feeds still owed to eggs and larvae.
+func _food_reserve() -> float:
+	var need := _adult_upkeep()
+	var worker_feeds := int(caste_defs[caste_index("worker")]["feeds"])
+	for b in brood:
+		if b["stage"] == STAGE_PUPA:
+			continue
+		var feeds: int = worker_feeds if b["caste"] == "" else int(caste_defs[caste_index(b["caste"])]["feeds"])
+		need += maxi(feeds - int(b["fed"]), 0)
+	return need
 
 
 func brood_counts() -> Vector3i:

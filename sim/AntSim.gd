@@ -50,6 +50,7 @@ var target := PackedInt32Array()
 var faction := PackedByteArray()
 var home := PackedByteArray()
 var inside := PackedByteArray()
+var scent := PackedByteArray()  # 1 = scent near the antennae last steer: steer every 2 ticks, else every 4
 var free := PackedInt32Array()
 
 var hash_head := PackedInt32Array()
@@ -138,7 +139,7 @@ func _grow(to: int) -> void:
 		var a: PackedFloat32Array = get(arr_name)
 		a.resize(to)
 		set(arr_name, a)
-	for arr_name in ["layer", "caste", "state", "job", "carry", "faction", "home", "inside"]:
+	for arr_name in ["layer", "caste", "state", "job", "carry", "faction", "home", "inside", "scent"]:
 		var a: PackedByteArray = get(arr_name)
 		a.resize(to)
 		set(arr_name, a)
@@ -177,6 +178,7 @@ func spawn(colony_idx: int, caste_idx: int, p: Vector2, lyr: int, nest_idx: int)
 	faction[i] = col.faction
 	home[i] = colony_idx
 	inside[i] = nest_idx
+	scent[i] = 1
 	alive += 1
 	if col.caste_names[caste_idx] == "queen":
 		job[i] = J_QUEEN
@@ -221,7 +223,12 @@ func _hash_index(i: int) -> int:
 
 
 func rebuild_hash() -> void:
-	hash_head.fill(-1)
+	# Clear only the buckets filled by the last rebuild: filling the whole 1.5M-entry
+	# table every tick cost ~2 ms even for a handful of ants.
+	for i in n:
+		var old := hcell[i]
+		if old >= 0:
+			hash_head[old] = -1
 	var inv := 1.0 / HASH_CELL
 	var house_off := space_offset(SPACE_HOUSE)
 	var nest_off := PackedVector2Array()
@@ -283,7 +290,9 @@ var _cols: Array = []
 var _rng: RandomNumberGenerator
 var _surf: SurfaceWorld
 var _house: NestGrid
+var _pher: Array = []
 var _home_pos := PackedVector2Array()
+var _gspeed := PackedFloat32Array(SurfaceWorld.GROUND_SPEED)
 var _speed := PackedFloat32Array()
 var _sense := PackedFloat32Array()
 var _wander := PackedFloat32Array()
@@ -310,6 +319,7 @@ func _cache() -> void:
 	_rng = world.rng_ants
 	_surf = world.surface
 	_house = world.house
+	_pher = world.pher
 	var ncol := _cols.size()
 	ncastes = _cols[0].caste_names.size()
 	_home_pos.resize(ncol)
@@ -325,7 +335,7 @@ func _cache() -> void:
 		for k in ncastes:
 			_speed[c * ncastes + k] = col.c_speed[k]
 			_sense[c * ncastes + k] = sense_dist * col.c_sense[k]
-			_wander[c * ncastes + k] = col.c_wander[k]
+			_wander[c * ncastes + k] = col.c_wander[k] * wander_noise * 3.0
 			_life[c * ncastes + k] = col.c_life[k]
 	_surface_open = world.surface_open()
 	_house_flag = world.flags.get("house", false) and _house != null
@@ -359,36 +369,94 @@ func step(dt: float) -> void:
 	traffic.fill(0)
 	if prev_jobs.size() != job_counts.size():
 		prev_jobs = job_counts.duplicate()
+	if want.size() != ncol * NJOBS:
+		_recount_castes()  # first step after setup/load: quotas need real populations
 	if tick % 20 == 1 or want.size() != ncol * NJOBS:
 		_update_quotas(prev_jobs)
 	for g in world.nests:
 		g.clear_occupancy()
-	rebuild_hash()
+	# Neighbour queries tolerate one tick of staleness (ants move ~2 mm per tick); queries
+	# re-check state, space and distance, so rebuilding every other tick is safe.
+	if tick & 1 == 1:
+		rebuild_hash()
 	for i in n:
 		if state[i] == DEAD:
 			continue
-		prev[i] = pos[i]
+		var p := pos[i]
+		prev[i] = p
 		var ci := caste[i]
 		var h := home[i]
 		var hc := h * ncastes + ci
+		var jb := job[i]
 		counts[hc] += 1
-		job_counts[h * NJOBS + job[i]] += 1
-		age[i] += 1.0
-		if age[i] > _life[hc]:
+		job_counts[h * NJOBS + jb] += 1
+		var a := age[i] + 1.0
+		age[i] = a
+		if a > _life[hc]:
 			kill(i, "old age")
 			continue
 		var col = _cols[h]
 		var l := layer[i]
+		var phase := i + tick
 		if l == LAYER_SURFACE:
-			_step_free(i, dt, col, SPACE_SURFACE, hc)
+			# Fast path, inlined (most of a big colony at any moment): an outbound forager or
+			# scout. Mirrors the forager branch of _step_free exactly (which still serves the house).
+			var st := state[i]
+			if (st == WANDER or st == IDLE or st == TASK) and jb != J_RALLY and jb != J_PATROL and (not _house_flag or phase & 7 != 0):
+				var spd: float = _speed[hc] * dt
+				var gx := int(p.x * _sinv)
+				var gy := int(p.y * _sinv)
+				if gx >= 0 and gy >= 0 and gx < _sw and gy < _sh:
+					spd *= _gspeed[_ground[gy * _sw + gx]]
+				spd *= _weather_speed
+				var t := timer[i] + dt
+				timer[i] = t
+				var hd := heading[i]
+				var ph: PheromoneField = _pher[SPACE_SURFACE]
+				var base := faction[i] * PheromoneField.PER_FACTION
+				# Sniff every 2nd tick near scent, every 4th when the last sniff found nothing.
+				var sniff := phase & 1 == 0 and (scent[i] != 0 or phase & 3 == 0)
+				var found := false
+				if sniff:
+					if ci == 2:
+						hd += ph.steer(p, hd, _sense[hc], sense_angle, base + PheromoneField.FOOD, base + PheromoneField.EXPLORE, -0.3, alarm_avoid) * turn_rate * dt * 2.0
+					else:
+						hd += ph.steer(p, hd, _sense[hc], sense_angle, base + PheromoneField.FOOD, base + PheromoneField.PLAYER, _player_w[h], alarm_avoid) * turn_rate * dt * 2.0
+					var fid: int = _surf.food_at(SPACE_SURFACE, p.x, p.y)
+					if fid > 0 and _surf.foods.has(fid) and (_surf.foods[fid]["type"] != "leaf" or col.has_unlock("behaviour:leafcutter")):
+						_found_food(i, fid, col, SPACE_SURFACE)
+						found = true
+				if not found:
+					hd += (_rng.randf() * 2.0 - 1.0) * _wander[hc] * dt
+					if phase % deposit_interval == 0:
+						var strength := home_deposit * exp(-t / trail_fade) * 3.0
+						if strength > 0.05:
+							ph.deposit(p.x, p.y, base + PheromoneField.HOME, strength * deposit_interval)
+						if ci == 2:
+							ph.deposit(p.x, p.y, base + PheromoneField.EXPLORE, explore_deposit * deposit_interval)
+					if t > give_up or not _surface_open:
+						state[i] = CARRY
+					if sniff:
+						scent[i] = 1 if ph.last_best > 0.02 else 0
+					var np := p + Vector2(cos(hd), sin(hd)) * spd
+					var bx := int(np.x * _sinv)
+					var by := int(np.y * _sinv)
+					if bx < 0 or by < 0 or bx >= _sw or by >= _sh or _blocked[by * _sw + bx] != 0:
+						hd += (PI * 0.5 + _rng.randf() * PI * 0.5) * (1.0 if (i & 1) == 0 else -1.0)
+					else:
+						pos[i] = np
+					if hd > PI or hd < -PI:
+						hd = wrapf(hd, -PI, PI)
+					heading[i] = hd
+			else:
+				_step_free(i, dt, col, SPACE_SURFACE, hc)
 		elif l == LAYER_NEST:
 			_step_nest(i, dt, col)
 		else:
 			_step_free(i, dt, col, SPACE_HOUSE, hc)
 		if state[i] == DEAD:
 			continue
-		var phase := (i + tick)
-		if phase % 10 == 0:
+		if phase % 10 == 0 and (l == LAYER_NEST or _hazard_on):
 			_hazards(i, dt * 10.0, col)
 		if phase % 4 == 0 and (ci == 1 or ci == 4 or state[i] == FIGHT or job[i] == J_RAID or job[i] == J_RALLY or faction[i] != 0):
 			_ant_combat(i, dt * 4.0, col)
@@ -399,6 +467,21 @@ func step(dt: float) -> void:
 		for k in ncastes:
 			arr[k] = counts[c * ncastes + k]
 		col.counts = arr
+
+
+## Refresh every colony's per-caste counts from the arrays (normally done by step).
+func _recount_castes() -> void:
+	var ncol: int = _cols.size()
+	var tmp := PackedInt32Array()
+	tmp.resize(ncol * ncastes)
+	for i in n:
+		if state[i] != DEAD:
+			tmp[home[i] * ncastes + caste[i]] += 1
+	for c in ncol:
+		var arr: PackedInt32Array = _cols[c].counts
+		for k in ncastes:
+			arr[k] = tmp[c * ncastes + k]
+		_cols[c].counts = arr
 
 
 func _update_quotas(jobs: PackedInt32Array) -> void:
@@ -419,7 +502,8 @@ func _update_quotas(jobs: PackedInt32Array) -> void:
 		want[base + J_DIG] = mini(g.marks * 2, int(pop * 0.5) + 1)
 		want[base + J_NURSE] = mini(int(ceil(float(larvae) / ants_per_nurse)), int(pop * 0.35) + 1)
 		var surface_ok: bool = world.surface_open() and world.flags.get("surface", false)
-		want[base + J_FORAGE] = int(pop * 0.75) if surface_ok else 0
+		# Most foragers rest in the nest overnight.
+		want[base + J_FORAGE] = int(pop * (0.3 if Clock.is_night() else 0.75)) if surface_ok else 0
 		want[base + J_PATROL] = int(pop * 0.12) if surface_ok else 0
 		want[base + J_TRADE] = world.trade_quota(c)
 		want[base + J_RALLY] = world.rally_quota(c, pop)
@@ -472,6 +556,8 @@ func _step_nest(i: int, dt: float, col) -> void:
 	match job[i]:
 		J_NONE:
 			_decide_nest_job(i, g, col)
+			# Count the new job now so ants deciding later this tick see the quota filling.
+			job_counts[home[i] * NJOBS + job[i]] += 1
 		J_DIG:
 			var f := g.field("dig")
 			if g.marks <= 0 or f[c] >= NestGrid.INF:
@@ -776,19 +862,22 @@ func _step_free(i: int, dt: float, col, space: int, hc: int) -> void:
 		return  # moved by World.haul_step
 	var ci := caste[i]
 	var f := faction[i]
-	var ph: PheromoneField = world.pher[space]
+	var ph: PheromoneField = _pher[space]
 	var p := pos[i]
 	var spd: float = _speed[hc] * dt
 	if space == SPACE_SURFACE:
 		var gx := int(p.x * _sinv)
 		var gy := int(p.y * _sinv)
 		if gx >= 0 and gy >= 0 and gx < _sw and gy < _sh:
-			spd *= SurfaceWorld.GROUND_SPEED[_ground[gy * _sw + gx]]
+			spd *= _gspeed[_ground[gy * _sw + gx]]
 		spd *= _weather_speed
 	timer[i] += dt
 	var hd := heading[i]
 	var phase := tick + i
-	var steer := phase & 1 == 0
+	# Steer every 2nd tick near scent, every 4th when the last sniff found nothing.
+	var steer := phase & 1 == 0 and (scent[i] != 0 or phase & 3 == 0)
+	if steer:
+		ph.last_best = 1.0  # branches that don't sniff keep the fast cadence
 	var base := f * PheromoneField.PER_FACTION
 	var sd: float = _sense[hc]
 	match st:
@@ -826,10 +915,10 @@ func _step_free(i: int, dt: float, col, space: int, hc: int) -> void:
 						hd += ph.steer(p, hd, sd, sense_angle, base + PheromoneField.FOOD, base + PheromoneField.PLAYER, _player_w[home[i]], alarm_avoid) * turn_rate * dt * 2.0
 					# Food underfoot?
 					var fid: int = _surf.food_at(space, p.x, p.y)
-					if fid > 0 and _surf.foods.has(fid):
+					if fid > 0 and _surf.foods.has(fid) and (_surf.foods[fid]["type"] != "leaf" or col.has_unlock("behaviour:leafcutter")):
 						_found_food(i, fid, col, space)
 						return
-				hd += _rng.randf_range(-1.0, 1.0) * wander_noise * _wander[hc] * dt * 3.0
+				hd += (_rng.randf() * 2.0 - 1.0) * _wander[hc] * dt
 				if phase % deposit_interval == 0:
 					var strength := home_deposit * exp(-timer[i] / trail_fade) * 3.0
 					if strength > 0.05:
@@ -867,6 +956,7 @@ func _step_free(i: int, dt: float, col, space: int, hc: int) -> void:
 					var dest_nest: int = _cols[target[i] if trade else home[i]].nest
 					if trade:
 						_cols[target[i]].add_store(ITEM_NAMES[carry[i]], carry_amt[i], world.nests[dest_nest])
+						world.stats["trades"] = int(world.stats.get("trades", 0)) + 1
 						carry[i] = ITEM_NONE
 						carry_amt[i] = 0.0
 						heading[i] += PI
@@ -889,6 +979,8 @@ func _step_free(i: int, dt: float, col, space: int, hc: int) -> void:
 				state[i] = WANDER
 		_:
 			state[i] = WANDER
+	if steer:
+		scent[i] = 1 if ph.last_best > 0.02 else 0
 	# Move with collision.
 	var np := p + Vector2(cos(hd), sin(hd)) * spd
 	var blocked := false
@@ -902,7 +994,9 @@ func _step_free(i: int, dt: float, col, space: int, hc: int) -> void:
 		hd += (PI * 0.5 + _rng.randf() * PI * 0.5) * (1.0 if (i & 1) == 0 else -1.0)
 	else:
 		pos[i] = np
-	heading[i] = wrapf(hd, -PI, PI)
+	if hd > PI or hd < -PI:
+		hd = wrapf(hd, -PI, PI)
+	heading[i] = hd
 
 
 func _found_food(i: int, fid: int, col, space: int) -> void:
@@ -1198,7 +1292,7 @@ func serialize() -> Dictionary:
 		"n": n, "alive": alive, "pos": pos, "prev": prev, "vel": vel, "heading": heading, "layer": layer,
 		"caste": caste, "state": state, "job": job, "carry": carry, "carry_amt": carry_amt, "hp": hp,
 		"age": age, "timer": timer, "target": target, "faction": faction, "home": home, "inside": inside,
-		"free": free, "tick": tick,
+		"scent": scent, "free": free, "tick": tick, "want": want,
 	}
 
 
@@ -1207,3 +1301,4 @@ func deserialize(d: Dictionary) -> void:
 		set(k, d[k])
 	hash_next.resize(pos.size())
 	hcell.resize(pos.size())
+	scent.resize(pos.size())  # saves from before the steering cadence existed

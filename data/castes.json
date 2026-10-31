@@ -22,7 +22,7 @@
     "homing_weight": 0.9,
     "player_weight": 3.0,
     "alarm_avoid": 4.0,
-    "forage_give_up_seconds": 150.0,
+    "forage_give_up_seconds": 45.0,
     "separation": 0.6,
     "nest_speed_mult": 0.6,
     "pickup_seconds": 0.6,

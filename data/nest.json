@@ -21,9 +21,9 @@
   "flow_rebuild_ticks": 6,
   "env": {
     "update_divisor": 4,
-    "air_diffuse": 0.45,
+    "air_diffuse": 0.9,
     "air_base_use": 0.06,
-    "air_ant_use": 0.12,
+    "air_ant_use": 0.08,
     "air_slow": 70,
     "air_lethal": 22,
     "air_damage": 0.6,
