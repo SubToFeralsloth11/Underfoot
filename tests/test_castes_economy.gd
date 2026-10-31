@@ -62,8 +62,8 @@ func test_cutting_off_food_starves_oldest_ants_first() -> void:
 	for k in 8:
 		order.append(w.ants.spawn(0, worker, g.center(g.chambers[0]["cells"][k]), AntSim.LAYER_NEST, 0))
 		H.advance(30)
-	# 8 workers + queen 4 = 12 food/day; 6 sugar -> 6 short at 1.5 per ant -> the 4 oldest starve.
-	col.stores["sugar"] = 6.0
+	# 8 workers x 0.5 + queen 4 = 8 food/day; 4 sugar -> 4 short at 1.0 per ant -> the 4 oldest starve.
+	col.stores["sugar"] = 4.0
 	var dead_order := []
 	var cb := func(cause: String, _p, _s):
 		if cause == "starvation":

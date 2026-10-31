@@ -145,7 +145,10 @@ func _grow(to: int) -> void:
 		set(arr_name, a)
 	target.resize(to)
 	hash_next.resize(to)
+	var old_size := hcell.size()
 	hcell.resize(to)
+	for k in range(old_size, to):
+		hcell[k] = -1  # not linked into any bucket yet
 
 
 func spawn(colony_idx: int, caste_idx: int, p: Vector2, lyr: int, nest_idx: int) -> int:
@@ -388,10 +391,12 @@ func step(dt: float) -> void:
 		_update_quotas(prev_jobs)
 	for g in world.nests:
 		g.clear_occupancy()
-	# Neighbour queries tolerate one tick of staleness (ants move ~2 mm per tick); queries
-	# re-check state, space and distance, so rebuilding every other tick is safe.
-	if tick & 1 == 1:
+	# Neighbour queries tolerate a little staleness (ants move ~2 mm per tick, buckets are
+	# 16 mm and combat searches the 3x3 neighbourhood); queries re-check state, space and
+	# distance, so rebuilding every third tick is safe.
+	if tick % 3 == 1:
 		rebuild_hash()
+	var surf_ph: PheromoneField = _pher[SPACE_SURFACE]
 	for i in n:
 		if state[i] == DEAD:
 			continue
@@ -425,7 +430,7 @@ func step(dt: float) -> void:
 				var t := timer[i] + dt
 				timer[i] = t
 				var hd := heading[i]
-				var ph: PheromoneField = _pher[SPACE_SURFACE]
+				var ph := surf_ph
 				var base := faction[i] * PheromoneField.PER_FACTION
 				# Sniff every 2nd tick near scent, every 4th when the last sniff found nothing.
 				var sniff := phase & 1 == 0 and (scent[i] != 0 or phase & 3 == 0)
@@ -447,10 +452,50 @@ func step(dt: float) -> void:
 							ph.deposit(p.x, p.y, base + PheromoneField.HOME, strength * deposit_interval)
 						if ci == 2:
 							ph.deposit(p.x, p.y, base + PheromoneField.EXPLORE, explore_deposit * deposit_interval)
-					if t > give_up or not _surface_open:
+					if (t > give_up and scent[i] == 0) or t > give_up * 4.0 or not _surface_open:
 						state[i] = CARRY
 					if sniff:
 						scent[i] = 1 if ph.last_best > 0.02 else 0
+					var np := p + Vector2(cos(hd), sin(hd)) * spd
+					var bx := int(np.x * _sinv)
+					var by := int(np.y * _sinv)
+					if bx < 0 or by < 0 or bx >= _sw or by >= _sh or _blocked[by * _sw + bx] != 0:
+						hd += (PI * 0.5 + _rng.randf() * PI * 0.5) * (1.0 if (i & 1) == 0 else -1.0)
+					else:
+						pos[i] = np
+					if hd > PI or hd < -PI:
+						hd = wrapf(hd, -PI, PI)
+					heading[i] = hd
+			elif st == CARRY and jb != J_TRADE:
+				# Fast path for a returning forager (mirrors the CARRY branch of _step_free).
+				var spd: float = _speed[hc] * dt
+				var gx := int(p.x * _sinv)
+				var gy := int(p.y * _sinv)
+				if gx >= 0 and gy >= 0 and gx < _sw and gy < _sh:
+					spd *= _gspeed[_ground[gy * _sw + gx]]
+				spd *= _weather_speed
+				var t := timer[i] + dt
+				timer[i] = t
+				var to_home := _home_pos[h] - p
+				var dist := to_home.length()
+				if dist < 14.0:
+					_enter_nest(i, _cols[h].nest)
+				else:
+					var hd := heading[i]
+					var ph := surf_ph
+					var base := faction[i] * PheromoneField.PER_FACTION
+					var sniff := phase & 1 == 0 and (scent[i] != 0 or phase & 3 == 0)
+					if sniff:
+						hd += ph.steer(p, hd, _sense[hc], sense_angle, base + PheromoneField.HOME, base + PheromoneField.PLAYER, 1.0, alarm_avoid) * turn_rate * dt * 2.0
+						scent[i] = 1 if ph.last_best > 0.02 else 0
+					hd = lerp_angle(hd, to_home.angle(), homing_weight * dt * (3.0 if dist < 80.0 else 1.0))
+					hd += (_rng.randf() * 2.0 - 1.0) * wander_noise * 0.45 * dt
+					var cr := carry[i]
+					if ((cr != ITEM_NONE and cr != ITEM_SPOIL) or carry_amt[i] < 0.0) and phase % deposit_interval == 0:
+						var strength := food_deposit * exp(-t / trail_fade)
+						if strength > 0.05:
+							ph.deposit(p.x, p.y, base + PheromoneField.FOOD, strength * deposit_interval)
+							traffic[h] += 1
 					var np := p + Vector2(cos(hd), sin(hd)) * spd
 					var bx := int(np.x * _sinv)
 					var by := int(np.y * _sinv)
@@ -983,7 +1028,7 @@ func _step_free(i: int, dt: float, col, space: int, hc: int) -> void:
 						ph.deposit(p.x, p.y, base + PheromoneField.HOME, strength * deposit_interval)
 					if scout:
 						ph.deposit(p.x, p.y, base + PheromoneField.EXPLORE, explore_deposit * deposit_interval)
-				if timer[i] > give_up or not _surface_open:
+				if (timer[i] > give_up and scent[i] == 0) or timer[i] > give_up * 4.0 or not _surface_open:
 					state[i] = CARRY
 				if _house_flag and space == SPACE_SURFACE and phase % 8 == 0:
 					var gap: int = world.house_gap_at(p, 30.0)
@@ -1376,7 +1421,7 @@ func serialize() -> Dictionary:
 		"n": n, "alive": alive, "pos": pos, "prev": prev, "vel": vel, "heading": heading, "layer": layer,
 		"caste": caste, "state": state, "job": job, "carry": carry, "carry_amt": carry_amt, "hp": hp,
 		"age": age, "timer": timer, "target": target, "faction": faction, "home": home, "inside": inside,
-		"scent": scent, "free": free, "tick": tick, "want": want, "intruders": intruders,
+		"scent": scent, "free": free, "tick": tick, "want": want, "intruders": intruders, "hcell": hcell,
 	}
 
 
@@ -1384,5 +1429,18 @@ func deserialize(d: Dictionary) -> void:
 	for k in d.keys():
 		set(k, d[k])
 	hash_next.resize(pos.size())
-	hcell.resize(pos.size())
 	scent.resize(pos.size())  # saves from before the steering cadence existed
+	# Rebuild the bucket lists exactly as they were (same membership, same order): the
+	# hash is only refreshed every few ticks, so recomputing it from positions would differ.
+	if not d.has("hcell"):
+		hcell = PackedInt32Array()
+	var old_size := hcell.size()
+	hcell.resize(pos.size())
+	for k in range(old_size, pos.size()):
+		hcell[k] = -1
+	hash_head.fill(-1)
+	for i in n:
+		var hc := hcell[i]
+		if hc >= 0:
+			hash_next[i] = hash_head[hc]
+			hash_head[hc] = i

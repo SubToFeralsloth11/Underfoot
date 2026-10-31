@@ -103,8 +103,8 @@ func test_soldier_larva_needs_protein() -> void:
 
 
 func test_queen_holds_eggs_when_food_cannot_cover_upkeep() -> void:
-	_set_counts(40)  # 40 workers eat 40 + queen 4 per day
-	col.stores = {"sugar": 30.0, "protein": 0.0, "seeds": 0.0, "fungus": 0.0, "water": 20.0, "leaf": 500.0, "poison": 0.0}
+	_set_counts(40)  # 40 workers eat 40 x 0.5 + queen 4 = 24 per day
+	col.stores = {"sugar": 20.0, "protein": 0.0, "seeds": 0.0, "fungus": 0.0, "water": 20.0, "leaf": 500.0, "poison": 0.0}
 	for hour in 6:
 		_hour(0.0)
 	assert_eq(col.brood.size(), 0, "no eggs while edible food is below a day of upkeep (leaves don't count)")
@@ -117,11 +117,12 @@ func test_queen_holds_eggs_when_food_cannot_cover_upkeep() -> void:
 func test_adults_eat_before_larvae() -> void:
 	_set_counts(20)
 	col.queen_alive = false
-	col.stores = {"sugar": 20.0, "protein": 0.0, "seeds": 0.0, "fungus": 0.0, "water": 20.0, "leaf": 0.0, "poison": 0.0}
+	# Adult upkeep = 20 workers x 0.5 + queen 4 = 14: exactly one day's meals in store.
+	col.stores = {"sugar": 14.0, "protein": 0.0, "seeds": 0.0, "fungus": 0.0, "water": 20.0, "leaf": 0.0, "poison": 0.0}
 	for k in 5:
 		col.brood.append(_brood(Colony.STAGE_LARVA, "worker"))
 	_hour(Clock.ticks_per_hour * 4.0)
-	assert_eq(col.stores["sugar"], 20.0, "nurses don't feed larvae from the adults' next meal")
+	assert_eq(col.stores["sugar"], 14.0, "nurses don't feed larvae from the adults' next meal")
 	col.stores["sugar"] = 40.0
 	_hour(Clock.ticks_per_hour * 4.0)
 	assert_lt(col.stores["sugar"], 40.0, "surplus food goes to the larvae")
@@ -130,9 +131,9 @@ func test_adults_eat_before_larvae() -> void:
 func test_upkeep_starvation_count() -> void:
 	_set_counts(8)
 	col.stores = {"sugar": 6.0, "protein": 0.0, "seeds": 0.0, "fungus": 0.0, "water": 0.0, "leaf": 0.0, "poison": 0.0}
-	# Need = 8 workers + queen 4 = 12; 6 short; 1.5 per ant -> 4 starve.
-	assert_eq(col.on_day({"upkeep": 1.0}, 1.0), 4)
+	# Need = 8 workers x 0.5 + queen 4 = 8; 2 short; 1.0 per ant -> 2 starve.
+	assert_eq(col.on_day({"upkeep": 1.0}, 1.0), 2)
 	assert_eq(col.stores["sugar"], 0.0)
 	col.stores["sugar"] = 50.0
 	assert_eq(col.on_day({"upkeep": 1.0}, 1.0), 0)
-	assert_almost_eq(col.stores["sugar"], 38.0, 0.001)
+	assert_almost_eq(col.stores["sugar"], 42.0, 0.001)

@@ -25,7 +25,7 @@ godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://tests -gexit
 | 12 Release | Export presets (Windows, macOS universal, Linux, Web demo with chapters 1–2), GitHub Actions CI, store copy (`docs/STORE.md`), 30 s trailer (`docs/trailer.mp4`), 6+ screenshots | Windows, Linux, Web and macOS exports built locally; the macOS build boots headless to the menu with no data errors. Soak: see below |
 
 ## Measured performance
-- `tools/perf.gd -- 10000 200`: 10,000 ants (half nest, half surface), average sim tick in the low 20s of ms on an Apple A18 Pro laptop under a load average of about 4. This is within BUILD.md's 25 ms total budget, but the ant step alone is over its 12 ms sub-budget. BUILD.md's fallback (a GDExtension/C++ `AntSim`) was **not** done. The data layout is ready for it.
+- `tools/perf.gd -- 10000 300 mix` (10,000 ants, half nest, half surface, full world tick) on an Apple A18 Pro laptop at load average about 3: **25.4 ms average, 71 ms worst**, ant step alone 21.8 ms. The suite's mostly-surface 10k test measures 21–24 ms. That puts the total tick right at BUILD.md's 25 ms budget, and the ant step is well over its 12 ms sub-budget. BUILD.md's fallback (a GDExtension/C++ `AntSim`) was **not** done. The packed-array layout is ready for it.
 
 ## Known gaps / deviations
 - **Grid resolution:** the surface grid is 25 mm, not the 10 mm tiles in BUILD.md §2.3. At 10 mm the yard would need about 30 M cells of pheromones in GDScript. Ground type and collision use the same 25 mm grid.
